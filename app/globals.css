@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* 配色來自 docs/character.md：深藍 #1E3A5F、金黃 #F2C14E、白 #FFFFFF */
+@theme {
+  --color-navy: #1e3a5f;
+  --color-navy-50: #eef3f9;
+  --color-navy-100: #dce6f2;
+  --color-gold: #f2c14e;
+  --color-cream: #faf8f3;
+  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+}
+
+html,
+body {
+  background: var(--color-cream);
+  color: #0f172a;
+}
+
+/* 角色的輕微呼吸動畫（第六章 6.5） */
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015) translateY(-1px);
+  }
+}
+.avatar-breathe {
+  animation: breathe 4s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+/* 思考中的跳動點點 */
+@keyframes dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+.thinking-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-navy);
+  animation: dot 1s infinite;
+}
+
+/* 使用者設定「減少動態」時關閉動畫（無障礙） */
+@media (prefers-reduced-motion: reduce) {
+  .avatar-breathe,
+  .thinking-dot {
+    animation: none;
+  }
+}
