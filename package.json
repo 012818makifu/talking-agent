@@ -1,0 +1,37 @@
+{
+  "name": "talking-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "會講話的 AI 代理人網站：AI 法律資訊助理「小法」",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "ingest": "tsx scripts/ingest.ts",
+    "eval": "tsx scripts/eval.ts",
+    "test:chat": "tsx scripts/test-chat.ts",
+    "test:unit": "tsx scripts/test-unit.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "next": "^15.5.29",
+    "openai": "^6.49.0",
+    "pdf-parse": "^2.4.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.4",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.4",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}

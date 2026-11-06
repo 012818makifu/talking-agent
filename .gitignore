@@ -1,0 +1,18 @@
+# 依賴與建置產物
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# 金鑰：絕對不可上傳
+.env
+.env.local
+.env.*.local
+
+# 評估結果（可自行決定是否上傳）
+data/eval/results/
+
+# 系統檔
+.DS_Store
+.vercel
