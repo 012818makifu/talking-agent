@@ -1,6 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { claudeModel, hasClaudeKey } from "@/lib/agent-core";
-import { clientIp, rateLimit, redactPII } from "@/lib/safety";
+import { redactPII } from "@/lib/safety";
+
+import { checkMapAccess } from "@/lib/child-map-access";
 
 export async function GET() {
   const url = process.env.CHILD_MAP_VIDEO_URL || "";
@@ -9,13 +11,13 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  const denied = checkMapAccess(req);
+  if (denied) return denied;
   const body = await req.json().catch(() => null);
   if (typeof body?.message !== "string" || !body.message.trim() || body.message.length > 500)
     return Response.json({ error: "請用 1 到 500 字描述情況。" }, { status: 400 });
   if (!hasClaudeKey())
     return Response.json({ error: "AI 尚未連線，可以直接使用下方五題。" }, { status: 503 });
-  if (!rateLimit("child-map:" + clientIp(req)).ok)
-    return Response.json({ error: "查詢次數較多，請稍後再試或使用下方五題。" }, { status: 429 });
   const choices = {
     county: { type: "string", description: "臺灣縣市全名，使用臺字，若無法確認留空" },
     town: { type: "string", description: "行政區全名，若無法確認留空" },

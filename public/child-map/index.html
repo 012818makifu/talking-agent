@@ -10,7 +10,8 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#2E5C7B">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232E5C7B'/%3E%3Cpath d='M32 12c-8 0-14 6-14 14 0 10 14 26 14 26s14-16 14-26c0-8-6-14-14-14z' fill='%23fff'/%3E%3Ccircle cx='32' cy='26' r='5' fill='%232E5C7B'/%3E%3C/svg%3E">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}#reviewPanel textarea {display:block;width:100%;box-sizing:border-box;padding:12px;font:inherit;margin:10px 0} #reviewPanel select,#reviewPanel input[type=password]{max-width:100%;margin:6px 4px;padding:6px;font:inherit} #currentFields dt{font-weight:bold;margin-top:8px} #currentFields dd{margin-left:0} #suggestions article{border-top:1px solid #bbb;padding:10px 0} #suggestions p{margin:5px 0} #reviewPanel [hidden]{display:none!important}
+</style>
 <title>童行資源地圖</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -272,6 +273,7 @@ html.big .lbl{font-size:12px}
   .mapbox svg{max-height:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+#reviewPanel textarea {display:block;width:100%;box-sizing:border-box;padding:12px;font:inherit;margin:10px 0} #reviewPanel select,#reviewPanel input[type=password]{max-width:100%;margin:6px 4px;padding:6px;font:inherit} #currentFields dt{font-weight:bold;margin-top:8px} #currentFields dd{margin-left:0} #suggestions article{border-top:1px solid #bbb;padding:10px 0} #suggestions p{margin:5px 0} #reviewPanel [hidden]{display:none!important}
 </style>
 
 </head>
@@ -315,6 +317,7 @@ html.big .lbl{font-size:12px}
       <div class="cat"><h3><span class="dot" style="background:var(--edu)"></span>教育</h3><p>學校免費學習扶助、基金會課後輔導、獎助學金與公共圖書館。</p></div>
     </div>
     <p class="note" id="media" hidden><a target="_blank" rel="noopener">觀看短片：幫孩子找到一份暑假午餐 ↗</a></p>
+    <p class="note"><button class="linkbtn" type="button" id="openUpdates">公告更新與審核 →</button>　查看一則供餐公告如何更新地圖</p>
     <div class="how">
       <div><b>問答式探索</b><span>回答住哪裡、孩子幾年級、家庭狀況、需要什麼，系統替你篩出可申請的資源。</span></div>
       <div><b>地圖探索</b><span>從台灣地圖點縣市、再點行政區，瀏覽當地所有資源；也可以用最上方的搜尋欄找。</span></div>
@@ -337,6 +340,35 @@ html.big .lbl{font-size:12px}
       <p>孩子遇到受虐、疏忽照顧或緊急危險，請撥 113 保護專線或 110。</p>
     </div>
   </section>
+
+<section id="updates" hidden>
+  <div class="bar"><nav class="crumb" id="ucrumb" aria-label="目前位置"></nav>
+    <h2>公告更新與審核</h2><p>比對一則公告，核對原句後，選擇要採用的欄位。</p></div>
+  <div class="qform" id="reviewPanel">
+    <fieldset class="q"><legend>選擇資源</legend>
+      <label>資料來源 <select id="updateMode"><option value="demo">練習用供餐站（虛構，免費示範）</option><option value="live">地圖上的真實資源</option></select></label>
+      <div id="realResource" hidden><label>縣市 <select id="uc"></select></label> <label>行政區 <select id="ud"></select></label>
+      <label>資源 <select id="ur"></select></label> <a id="originalLink" target="_blank" rel="noopener">查看來源 ↗</a></div>
+      <dl id="currentFields"></dl>
+    </fieldset>
+    <fieldset class="q"><legend>比對新公告</legend>
+      <label for="notice">貼上單一資源的公告（最多 2,400 字）</label>
+      <textarea id="notice" rows="4" maxlength="2400"></textarea>
+      <div id="liveControls" hidden><label>管理密碼 <input type="password" autocomplete="off" id="reviewPassword"></label>
+      <p>內容有變動才送給 Claude。請只貼公開公告。</p></div>
+      <button type="button" class="cta" id="compare">免費示範比對</button>
+      <button type="button" class="linkbtn" id="resetPractice">重設練習案例</button>
+      <p role="status" id="reviewStatus"></p>
+    </fieldset>
+    <fieldset class="q" id="approval" hidden><legend>核對公告原句</legend>
+      <div id="suggestions"></div>
+      <button type="button" class="cta" id="approve">完成審核，儲存勾選的變更</button>
+      <button type="button" class="linkbtn" id="discard">取消</button>
+    </fieldset>
+    <p class="hint">審核結果保存在這個瀏覽器。真實資源的變更會顯示在本機所選行政區的地圖與查詢結果。</p>
+    <details><summary>將已審核的資料發布給訪客</summary><p>匯出後，在 GitHub 將檔案更新至 public/child-map/reviewed.json，待部署完成，其他人就能看到。練習案例不會匯出。</p><button type="button" class="linkbtn" id="exportReview">匯出 reviewed.json</button></details>
+  </div>
+</section>
 
   <!-- 地圖頁 -->
   <section id="explore" hidden>
@@ -384,10 +416,13 @@ html.big .lbl{font-size:12px}
     </div>
     <form class="qform" id="agent">
       <fieldset class="q"><legend>想找什麼幫助？</legend>
-        <label for="situation">用自己的話描述，例如「我住新北市板橋區，小孩讀小三，想找暑假的午餐」。</label>
-        <textarea id="situation" rows="3" maxlength="500" required style="display:block;width:100%;box-sizing:border-box;margin:12px 0;padding:12px;font:inherit;border:1px solid currentColor;border-radius:8px"></textarea>
-        <p class="sub">送出後由 Claude 整理。只需提供縣市、行政區和需求，請省略姓名、電話與詳細地址。</p>
-        <button class="cta" id="interpret">幫我整理查詢條件</button>
+        <p>免費體驗「我住新北市板橋區，小孩讀小三，想找暑假的午餐」。你也可以直接填下方五題。</p>
+        <button type="submit" class="cta" id="interpret">播放免費查詢範例</button>
+        <details><summary>管理者即時 AI 查詢</summary>
+        <label for="situation">情境（請省略姓名、電話與詳細地址）</label>
+        <textarea id="situation" rows="2" maxlength="500"></textarea>
+        <label>管理密碼 <input id="queryPassword" type="password" autocomplete="off"></label>
+        <button type="submit" id="liveQuery">交給 Claude 整理一次</button></details>
         <p role="status" aria-live="polite" id="agentStatus"></p>
       </fieldset>
     </form>
@@ -739,7 +774,7 @@ function resourcesFor(c, d) {
     item:"免費課業輔導（以英文、數學為主），並由社工關懷家庭與生活狀況",
     who:"經濟弱勢家庭的國中、國小學童", time:"請自行查詢", src:"博幼基金會服務範圍資料"});
 
-  return R.map(tagResource);
+  return R.map(r => tagResource(window.reviewedResource ? window.reviewedResource(c, d, r) : r));
 }
 
 // ===================== 標籤 =====================
@@ -783,7 +818,7 @@ const state = { county:null, town:null, filter:"all" };
 const CAT = { food:{label:"食", color:"var(--food)"}, cloth:{label:"衣", color:"var(--cloth)"}, edu:{label:"教育", color:"var(--edu)"} };
 let atlas = null, countyFeats = [], townFeats = [];
 
-function setView(v) { for (const id of ["home","explore","results","quiz","sos","help"]) $("#" + id).hidden = id !== v; window.scrollTo(0, 0); }
+function setView(v) { for (const id of ["home","explore","results","quiz","sos","help","updates"]) $("#" + id).hidden = id !== v; window.scrollTo(0, 0); }
 $("#start").addEventListener("click", () => { setView("explore"); showTaiwan(); });
 $("#brand").addEventListener("click", () => setView("home"));
 
@@ -1532,5 +1567,6 @@ $("#goSos").addEventListener("click", openSos);
 </script>
 
 <script src="./agent.js"></script>
+<script src="./review.js"></script>
 </body>
 </html>
