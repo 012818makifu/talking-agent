@@ -1,0 +1,1572 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="整理臺灣 22 縣市、368 個鄉鎮市區弱勢兒童與青少年可使用的食、衣、教育資源，提供問答式探索、地圖探索、急難救助指引與捐助志工資訊。">
+<meta property="og:title" content="童行資源地圖">
+<meta property="og:description" content="弱勢兒少的食、衣、教育資源地圖：找到身邊可用的資源，也找到可以幫忙的方式。">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2E5C7B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232E5C7B'/%3E%3Cpath d='M32 12c-8 0-14 6-14 14 0 10 14 26 14 26s14-16 14-26c0-8-6-14-14-14z' fill='%23fff'/%3E%3Ccircle cx='32' cy='26' r='5' fill='%232E5C7B'/%3E%3C/svg%3E">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}#reviewPanel textarea {display:block;width:100%;box-sizing:border-box;padding:12px;font:inherit;margin:10px 0} #reviewPanel select,#reviewPanel input[type=password]{max-width:100%;margin:6px 4px;padding:6px;font:inherit} #currentFields dt{font-weight:bold;margin-top:8px} #currentFields dd{margin-left:0} #suggestions article{border-top:1px solid #bbb;padding:10px 0} #suggestions p{margin:5px 0} #reviewPanel [hidden]{display:none!important}
+</style>
+<title>童行資源地圖</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 簡報式單欄首頁 → 地圖＋清單雙欄（窄螢幕堆疊）→ 行政區資源卡片 */
+:root{
+  --bg:#F5F7F9; --surface:#FFFFFF; --ink:#1D2935; --muted:#5A6776; --line:#DCE2E8;
+  --accent:#2E5C7B; --accent-soft:#E3ECF3;
+  --food:#A86B2E; --food-soft:#F6ECE1; --cloth:#7D5D86; --cloth-soft:#F1EAF3; --edu:#3F7D60; --edu-soft:#E5F1EA;
+  --map0:#E4EAF0; --map1:#C7D4E0; --map2:#9FB6CB; --map-stroke:#FFFFFF; --map-hover:#2E5C7B;
+  --font:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --r:10px;
+  --sos:#A83F3B; --sos-soft:#F8E8E6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11161C; --surface:#19212A; --ink:#E5EAEF; --muted:#9BA7B4; --line:#2A3542;
+  --accent:#86B5D6; --accent-soft:#1F2F3D;
+  --food:#DDA46A; --food-soft:#2E241A; --cloth:#C2A3CB; --cloth-soft:#2A2230; --edu:#86C3A3; --edu-soft:#1B2B23;
+  --map0:#25303B; --map1:#304253; --map2:#3D566D; --map-stroke:#11161C; --map-hover:#86B5D6; --sos:#E8908B; --sos-soft:#3A2321; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161C; --surface:#19212A; --ink:#E5EAEF; --muted:#9BA7B4; --line:#2A3542;
+  --accent:#86B5D6; --accent-soft:#1F2F3D;
+  --food:#DDA46A; --food-soft:#2E241A; --cloth:#C2A3CB; --cloth-soft:#2A2230; --edu:#86C3A3; --edu-soft:#1B2B23;
+  --map0:#25303B; --map1:#304253; --map2:#3D566D; --map-stroke:#11161C; --map-hover:#86B5D6; --sos:#E8908B; --sos-soft:#3A2321; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin:0 auto;padding-block:28px 56px}
+h1,h2,h3{line-height:1.3;text-wrap:balance;margin:0}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* 首頁 */
+.hero{padding-block:40px 32px;border-bottom:1px solid var(--line);display:grid;gap:18px}
+.hero h1{font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:.02em}
+.hero p{max-width:40em;color:var(--muted);margin:0;font-size:16px}
+.cta{display:inline-flex;align-items:center;gap:10px;justify-self:start;background:var(--accent);color:var(--surface);
+  border:0;border-radius:999px;padding:12px 28px;font-weight:700;font-size:16px;cursor:pointer}
+.cta:hover{filter:brightness(1.08)}
+.cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding-block:28px}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:6px;align-content:start}
+.cat h3{font-size:18px;display:flex;align-items:center;gap:10px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.cat p{margin:0;color:var(--muted);font-size:14px}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding-block:8px 28px}
+.how div{border-top:2px solid var(--ink);padding-top:10px}
+.how b{display:block;font-size:15px}
+.how span{color:var(--muted);font-size:14px}
+.note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:grid;gap:4px}
+.note p{margin:0}
+
+/* 地圖頁 */
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.crumb{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:14px;color:var(--muted)}
+.crumb button{background:none;border:0;padding:2px 0;cursor:pointer;color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.crumb .sep{opacity:.5}
+.bar h2{font-size:24px;flex-basis:100%}
+.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:start}
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px;position:relative}
+.mapbox svg{display:block;width:100%;height:auto;max-height:78vh}
+.mapmsg{padding:40px 16px;text-align:center;color:var(--muted);font-size:14px}
+.area{fill:var(--map0);stroke:var(--map-stroke);stroke-width:.8;cursor:pointer;transition:fill .15s}
+.area.l1{fill:var(--map1)} .area.l2{fill:var(--map2)}
+.area:hover,.area:focus{fill:var(--map-hover);outline:none}
+.area.sel{fill:var(--accent)}
+.lbl{font-size:10px;fill:var(--ink);pointer-events:none;paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round;text-anchor:middle;font-family:var(--font)}
+.inset{fill:none;stroke:var(--line);stroke-dasharray:3 3}
+.insetlbl{font-size:11px;fill:var(--muted)}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--surface);font-size:13px;padding:3px 10px;border-radius:6px;white-space:nowrap}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:6px 6px 2px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:4px}
+.side{display:grid;gap:18px;min-width:0}
+.region h3{font-size:13px;color:var(--muted);font-weight:500;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 14px;font-size:14px;cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.sel{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.hint{font-size:14px;color:var(--muted);margin:0}
+
+/* 資源 */
+.panel{display:grid;gap:16px;min-width:0}
+.panel-head{display:grid;gap:10px}
+.panel-head h3{font-size:22px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 12px;font-size:14px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.tab[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--surface)}
+.tab .n{font-family:var(--mono);font-size:12px;opacity:.8}
+.group{display:grid;gap:10px}
+.group>h4{margin:6px 0 0;font-size:15px;display:flex;align-items:center;gap:8px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:8px;min-width:0}
+.card-top{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;justify-content:space-between}
+.card h5{margin:0;font-size:16px;font-weight:700;line-height:1.45}
+.card h5 a{text-decoration:none;border-bottom:1px solid currentColor}
+.card h5 a:hover{border-bottom-width:2px}
+.ext{font-size:12px;margin-left:4px}
+.scope{font-size:12px;border-radius:4px;padding:1px 8px;white-space:nowrap}
+.food .scope{background:var(--food-soft);color:var(--food)}
+.cloth .scope{background:var(--cloth-soft);color:var(--cloth)}
+.edu .scope{background:var(--edu-soft);color:var(--edu)}
+.card ul{margin:0;padding-left:1.1em;display:grid;gap:3px;font-size:14px}
+.card li b{font-weight:500;color:var(--muted)}
+.card .src{font-size:12px;color:var(--muted)}
+.food{border-left:3px solid var(--food)} .cloth{border-left:3px solid var(--cloth)} .edu{border-left:3px solid var(--edu)}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:28px;text-align:center;color:var(--muted)}
+footer{margin-top:40px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+/* 大字版 */
+.bigbtn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px 6px 6px;cursor:pointer;font-size:14px;font-weight:500;white-space:nowrap}
+.bigbtn .aa{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:15px}
+.bigbtn:hover{border-color:var(--accent)}
+.bigbtn[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.bigbtn[aria-pressed="true"] .aa{background:var(--surface);color:var(--ink)}
+html.big .wrap{zoom:1.3}
+html.big{--muted:#3F4B58}
+@media (prefers-color-scheme:dark){html.big:not([data-theme="light"]){--muted:#C3CCD6}}
+html.big[data-theme="dark"]{--muted:#C3CCD6}
+html.big .card ul,html.big .rcard details ul{gap:6px}
+html.big .lbl{font-size:12px}
+
+/* 我想幫忙 */
+.giveband{margin-top:28px;border-top:3px double var(--line);padding-top:24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px;align-items:center}
+.giveband h2{font-size:24px;margin-top:4px}
+.giveband p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.give-ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.way{text-align:left;display:grid;gap:2px;border:1px dashed var(--edu);background:var(--edu-soft);border-radius:var(--r);padding:14px 16px;cursor:pointer}
+.way b{color:var(--edu);font-size:16px}
+.way span{font-size:13px;color:var(--muted)}
+.way:hover{border-style:solid}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.hsec{display:grid;gap:10px;scroll-margin-top:16px}
+.hsec>h3{font-size:20px;margin-top:12px}
+.legend2{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--muted);align-items:center}
+.st{border-radius:4px;padding:1px 8px;font-size:12px;white-space:nowrap;border:1px solid transparent}
+.st-always{background:var(--edu-soft);color:var(--edu)}
+.st-live{background:var(--accent-soft);color:var(--accent)}
+.st-season{background:var(--food-soft);color:var(--food)}
+.st-ask{background:var(--cloth-soft);color:var(--cloth)}
+.st-no{background:var(--sos-soft);color:var(--sos)}
+.hcard{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--edu);border-radius:var(--r);padding:16px 18px;display:grid;gap:8px;min-width:0}
+.hcard ul{margin:0;padding-left:1.1em;display:grid;gap:3px;font-size:14px}
+.hcard li b{font-weight:500;color:var(--muted)}
+.hact{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.hact a.go{text-decoration:none}
+.meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.stale{color:var(--sos);font-weight:500}
+.rep{background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;text-underline-offset:2px;cursor:pointer;font-size:12px}
+.rep:hover{color:var(--accent)}
+.helpnudge{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.year{list-style:none;margin:0;padding:0;display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.year li{position:relative;padding:0 0 14px 20px;display:grid;gap:2px;font-size:14px}
+.year li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--edu)}
+.year li.now::before{background:var(--edu)}
+.year .m{font-family:var(--mono);font-size:13px;color:var(--edu);font-weight:500}
+.year .now-tag{font-size:12px;background:var(--edu);color:var(--surface);border-radius:4px;padding:0 6px;margin-left:6px}
+.tips{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:14px}
+.tips b{font-weight:500}
+#repDlg{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);padding:0;width:min(520px,calc(100vw - 32px));max-width:100%}
+#repDlg::backdrop{background:rgba(10,15,20,.45)}
+.repform{display:grid;gap:12px;padding:20px}
+.repform h3{font-size:18px}
+.repform textarea{font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;resize:vertical}
+.dlgbtns{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.copybox{font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;white-space:pre-wrap;user-select:all}
+.inboxitem{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;display:grid;gap:2px}
+@media (max-width:820px){.giveband,.give-ways{grid-template-columns:minmax(0,1fr)}}
+
+/* 首頁入口 */
+.entries{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding-block:24px 4px}
+.entry{position:relative;text-align:left;display:grid;gap:4px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 44px 20px 20px;cursor:pointer;transition:border-color .15s,transform .15s}
+.entry:hover{border-color:var(--accent);transform:translateY(-2px)}
+.entry b{font-size:19px}
+.entry span:not(.e-k){color:var(--muted);font-size:14px}
+.entry .e-k{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em}
+.entry i{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-style:normal;font-size:20px;color:var(--accent)}
+.entry.sos{background:var(--sos-soft);border-color:var(--sos)}
+.entry.sos .e-k,.entry.sos i,.entry.sos b{color:var(--sos)}
+.how div b{color:var(--ink)}
+
+/* 問答 */
+.qform{display:grid;gap:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;gap:10px;margin:0}
+.q legend{padding:0;font-weight:700;font-size:16px;display:flex;gap:10px;align-items:baseline}
+.q legend .e-k{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.q .sub{font-size:13px;color:var(--muted);margin:0}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.opt span{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;background:var(--bg)}
+.opt input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.sel2{display:flex;flex-wrap:wrap;gap:10px}
+.sel2 select{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0;max-width:100%}
+.qsubmit{justify-self:start}
+.qres{display:grid;gap:14px;padding-top:10px}
+.qsum{background:var(--accent-soft);border-radius:var(--r);padding:14px 18px;display:grid;gap:6px}
+.qsum h3{font-size:18px}
+.alert{background:var(--sos-soft);border:1px solid var(--sos);color:var(--ink);border-radius:var(--r);padding:12px 16px;font-size:14px}
+.alert b{color:var(--sos)}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;cursor:pointer;font-size:inherit}
+
+/* 急難 */
+.hot{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.num{background:var(--sos-soft);border:1px solid var(--sos);border-radius:var(--r);padding:14px 16px;display:grid;gap:2px;align-content:start}
+.num .n{font-family:var(--mono);font-size:34px;font-weight:500;color:var(--sos);line-height:1.1;user-select:all}
+.num b{font-size:15px}
+.num span{font-size:13px;color:var(--muted)}
+.num .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.call,.copy{font-size:13px;border-radius:6px;padding:3px 10px;border:1px solid var(--sos);background:var(--surface);color:var(--sos);cursor:pointer;text-decoration:none}
+.sit{display:grid;gap:12px}
+.sitc{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--sos);border-radius:var(--r);padding:16px 18px;display:grid;gap:8px}
+.sitc h4{margin:0;font-size:17px}
+.sitc ol,.sitc ul{margin:0;padding-left:1.3em;display:grid;gap:4px;font-size:14px}
+.tel{font-family:var(--mono);font-weight:500;color:var(--sos);user-select:all}
+.localbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:10px}
+.localbox ul{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:14px}
+@media (max-width:820px){.entries,.hot{grid-template-columns:minmax(0,1fr)}}
+
+/* 搜尋 */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.brand{background:none;border:0;padding:0;font-weight:700;font-size:16px;cursor:pointer;letter-spacing:.04em}
+.sform{flex:1 1 320px;display:flex;gap:8px;min-width:0}
+.sform input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 16px}
+.sform input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.sform button{border:0;background:var(--ink);color:var(--surface);border-radius:999px;padding:9px 18px;font-weight:500;cursor:pointer;white-space:nowrap}
+.examples{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--muted);flex-basis:100%}
+.ex{border:1px solid var(--line);background:none;border-radius:999px;padding:1px 10px;font-size:13px;cursor:pointer;color:var(--muted)}
+.ex:hover{color:var(--accent);border-color:var(--accent)}
+.parsed{display:flex;flex-wrap:wrap;gap:6px;font-size:13px;align-items:center}
+.pill{border-radius:4px;padding:1px 8px;background:var(--accent-soft);color:var(--accent)}
+.pill.free{background:var(--line);color:var(--ink)}
+.rlist{display:grid;gap:10px}
+.rcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;display:grid;gap:6px;min-width:0}
+.rcard .loc{font-size:13px;color:var(--muted)}
+.rcard .sum{font-size:14px;margin:0}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;font-size:12px}
+.tg{border-radius:4px;padding:0 7px;background:var(--accent-soft);color:var(--accent)}
+.tg.unk{background:none;border:1px dashed var(--line);color:var(--muted)}
+.rcard details{font-size:14px}
+.rcard summary{cursor:pointer;color:var(--accent);font-size:13px}
+.rcard details ul{margin:6px 0 0;padding-left:1.1em;display:grid;gap:3px}
+.rcard details b{font-weight:500;color:var(--muted)}
+.ract{display:flex;gap:10px;flex-wrap:wrap}
+.go{border:1px solid var(--line);background:none;border-radius:6px;padding:3px 10px;font-size:13px;cursor:pointer;color:var(--accent)}
+.go:hover{border-color:var(--accent)}
+.pager{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;padding-top:8px}
+.pg{min-width:36px;border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:4px 10px;cursor:pointer;font-family:var(--mono);font-size:13px}
+.pg[aria-current="page"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.pg:disabled{opacity:.4;cursor:default}
+.rmeta{font-size:14px;color:var(--muted)}
+.help{font-size:13px;color:var(--muted)}
+.help summary{cursor:pointer}
+.help ul{margin:6px 0 0;padding-left:1.1em}
+@media (max-width:820px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .cats,.how{grid-template-columns:minmax(0,1fr)}
+  .mapbox svg{max-height:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+#reviewPanel textarea {display:block;width:100%;box-sizing:border-box;padding:12px;font:inherit;margin:10px 0} #reviewPanel select,#reviewPanel input[type=password]{max-width:100%;margin:6px 4px;padding:6px;font:inherit} #currentFields dt{font-weight:bold;margin-top:8px} #currentFields dd{margin-left:0} #suggestions article{border-top:1px solid #bbb;padding:10px 0} #suggestions p{margin:5px 0} #reviewPanel [hidden]{display:none!important}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <!-- 頂部搜尋列（所有頁面共用） -->
+  <header class="top">
+    <button class="brand" id="brand" type="button">童行資源地圖</button>
+    <form class="sform" id="sform" role="search">
+      <label for="q" class="eyebrow" style="position:absolute;left:-9999px">搜尋資源</label>
+      <input id="q" type="search" autocomplete="off" placeholder="搜尋機構或條件，例如：新店 國中生 免費">
+      <button type="submit">搜尋</button>
+    </form>
+    <button class="bigbtn" id="bigBtn" type="button" aria-pressed="false"><span class="aa" aria-hidden="true">大</span><span id="bigLbl">大字版</span></button>
+    <div class="examples">試試看：
+      <button type="button" class="ex">家扶</button>
+      <button type="button" class="ex">台北 課輔</button>
+      <button type="button" class="ex">新店 國中生 免費</button>
+      <button type="button" class="ex">寒假 午餐 低收入戶</button>
+      <button type="button" class="ex">制服</button>
+      <button type="button" class="ex">週三 放學後</button>
+    </div>
+  </header>
+
+  <!-- 首頁 -->
+  <section id="home">
+    <div class="hero">
+      <div class="eyebrow">弱勢兒少資源整理 · 2026</div>
+      <h1>童行資源地圖</h1>
+      <p>很多家庭不知道孩子其實有免費的餐點、制服和課業輔導可以用。這個網站整理了臺灣 22 個縣市、368 個鄉鎮市區中，弱勢兒童與青少年可以使用的「食」「衣」「教育」資源，寫清楚在哪裡、誰可以用、怎麼領。</p>
+      <p>不知道從哪裡開始？回答幾個問題，就能找到符合條件的資源；想看家附近有什麼，就用地圖找；現在就需要幫忙，請直接按「急難救助」。</p>
+    </div>
+    <div class="entries">
+      <button class="entry" id="goQuiz" type="button"><span class="e-k">01</span><b>AI 問答式探索</b><span>用一句話找資源</span><i aria-hidden="true">→</i></button>
+      <button class="entry" id="start" type="button"><span class="e-k">02</span><b>地圖探索</b><span>看看家裡附近有什麼資源</span><i aria-hidden="true">→</i></button>
+      <button class="entry sos" id="goSos" type="button"><span class="e-k">!</span><b>急難救助</b><span>我需要立即性的協助</span><i aria-hidden="true">→</i></button>
+    </div>
+    <div class="cats">
+      <div class="cat"><h3><span class="dot" style="background:var(--food)"></span>食</h3><p>超商緊急餐點、假日與寒暑假餐券、學校午餐補助、實物銀行與食物包。</p></div>
+      <div class="cat"><h3><span class="dot" style="background:var(--cloth)"></span>衣</h3><p>學校二手制服與書包、家扶合作的春節選新衣活動、軍公教遺族子女制服費補助。</p></div>
+      <div class="cat"><h3><span class="dot" style="background:var(--edu)"></span>教育</h3><p>學校免費學習扶助、基金會課後輔導、獎助學金與公共圖書館。</p></div>
+    </div>
+    <p class="note" id="media" hidden><a target="_blank" rel="noopener">觀看短片：幫孩子找到一份暑假午餐 ↗</a></p>
+    <p class="note"><button class="linkbtn" type="button" id="openUpdates">公告更新與審核 →</button>　查看一則供餐公告如何更新地圖</p>
+    <div class="how">
+      <div><b>問答式探索</b><span>回答住哪裡、孩子幾年級、家庭狀況、需要什麼，系統替你篩出可申請的資源。</span></div>
+      <div><b>地圖探索</b><span>從台灣地圖點縣市、再點行政區，瀏覽當地所有資源；也可以用最上方的搜尋欄找。</span></div>
+      <div><b>急難救助</b><span>肚子餓、受到傷害、家裡突然出事時，馬上知道該打哪支電話、去哪裡求助。</span></div>
+    </div>
+    <section class="giveband" aria-labelledby="giveTitle">
+      <div class="give-txt">
+        <div class="eyebrow">給想提供協助的人</div>
+        <h2 id="giveTitle">我想幫忙</h2>
+        <p>有能力的話，你也可以成為這張地圖上的資源。我們整理了收物資、收捐款和招募志工的單位，並標示每筆資訊最後查證的日期。</p>
+      </div>
+      <div class="give-ways">
+        <button type="button" class="way" data-open="help" data-sec="h-goods"><b>捐物資</b><span>先看最新需求再捐</span></button>
+        <button type="button" class="way" data-open="help" data-sec="h-money"><b>捐款</b><span>確認合法勸募</span></button>
+        <button type="button" class="way" data-open="help" data-sec="h-vol"><b>當志工</b><span>課輔陪伴、活動、物資整理</span></button>
+      </div>
+    </section>
+    <div class="note">
+      <p>資料整理日期：2026 年 10 月 19 日。資料來自政府計畫文件、基金會公告與新聞報導，由 AI 協助蒐集、經人工整理與查核；各計畫的金額、時間與條件可能調整，申請前請以各單位最新公告為準。</p>
+      <p>孩子遇到受虐、疏忽照顧或緊急危險，請撥 113 保護專線或 110。</p>
+    </div>
+  </section>
+
+<section id="updates" hidden>
+  <div class="bar"><nav class="crumb" id="ucrumb" aria-label="目前位置"></nav>
+    <h2>公告更新與審核</h2><p>比對一則公告，核對原句後，選擇要採用的欄位。</p></div>
+  <div class="qform" id="reviewPanel">
+    <fieldset class="q"><legend>選擇資源</legend>
+      <label>資料來源 <select id="updateMode"><option value="demo">練習用供餐站（虛構，免費示範）</option><option value="live">地圖上的真實資源</option></select></label>
+      <div id="realResource" hidden><label>縣市 <select id="uc"></select></label> <label>行政區 <select id="ud"></select></label>
+      <label>資源 <select id="ur"></select></label> <a id="originalLink" target="_blank" rel="noopener">查看來源 ↗</a></div>
+      <dl id="currentFields"></dl>
+    </fieldset>
+    <fieldset class="q"><legend>比對新公告</legend>
+      <label for="notice">貼上單一資源的公告（最多 2,400 字）</label>
+      <textarea id="notice" rows="4" maxlength="2400"></textarea>
+      <div id="liveControls" hidden><label>管理密碼 <input type="password" autocomplete="off" id="reviewPassword"></label>
+      <p>內容有變動才送給 Claude。請只貼公開公告。</p></div>
+      <button type="button" class="cta" id="compare">免費示範比對</button>
+      <button type="button" class="linkbtn" id="resetPractice">重設練習案例</button>
+      <p role="status" id="reviewStatus"></p>
+    </fieldset>
+    <fieldset class="q" id="approval" hidden><legend>核對公告原句</legend>
+      <div id="suggestions"></div>
+      <button type="button" class="cta" id="approve">完成審核，儲存勾選的變更</button>
+      <button type="button" class="linkbtn" id="discard">取消</button>
+    </fieldset>
+    <p class="hint">審核結果保存在這個瀏覽器。真實資源的變更會顯示在本機所選行政區的地圖與查詢結果。</p>
+    <details><summary>將已審核的資料發布給訪客</summary><p>匯出後，在 GitHub 將檔案更新至 public/child-map/reviewed.json，待部署完成，其他人就能看到。練習案例不會匯出。</p><button type="button" class="linkbtn" id="exportReview">匯出 reviewed.json</button></details>
+  </div>
+</section>
+
+  <!-- 地圖頁 -->
+  <section id="explore" hidden>
+    <div class="bar">
+      <nav class="crumb" id="crumb" aria-label="目前位置"></nav>
+      <h2 id="viewTitle">選擇縣市</h2>
+    </div>
+    <div class="grid">
+      <div class="mapbox" id="mapbox">
+        <div class="mapmsg" id="mapmsg">地圖載入中…</div>
+        <div class="tip" id="tip" hidden></div>
+      </div>
+      <div class="side" id="side"></div>
+    </div>
+    <footer>資料整理：2026 年 10 月 19 日｜計畫內容可能變動，請以各單位公告為準｜緊急求助：113 保護專線、110</footer>
+  </section>
+
+  <!-- 搜尋結果 -->
+  <section id="results" hidden>
+    <div class="bar">
+      <nav class="crumb" id="rcrumb" aria-label="目前位置"></nav>
+      <h2 id="rtitle">搜尋結果</h2>
+    </div>
+    <div class="panel">
+      <div class="parsed" id="parsed"></div>
+      <details class="help"><summary>搜尋說明</summary><ul>
+        <li>多個條件用空白隔開，例如「新店 國中生 免費」。</li>
+        <li>可以搜尋機構名稱（打部分文字即可，如「家扶」「博幼」）、縣市或行政區（台北、臺北、新店、新店區都可以）。</li>
+        <li>也可以搜尋類型（午餐、食材、課輔、制服、圖書館…）、對象（國小、國中生、高中、未成年、低收入戶…）、時間（平日、週二、假日、寒假、24小時…）、費用（免費、優惠）、領取方式（超商、學生證、宅配…）。</li>
+        <li>如果某筆資料沒有標示你查的條件（例如沒寫是否免費），仍會列出，並以虛線標籤「未標示」提醒你自行確認。</li>
+      </ul></details>
+      <div class="rmeta" id="rmeta"></div>
+      <div class="rlist" id="rlist"></div>
+      <nav class="pager" id="pager" aria-label="分頁"></nav>
+    </div>
+    <footer>資料整理：2026 年 10 月 19 日｜計畫內容可能變動，請以各單位公告為準｜緊急求助：113 保護專線、110</footer>
+  </section>
+
+  <!-- 問答式探索 -->
+  <section id="quiz" hidden>
+    <div class="bar">
+      <nav class="crumb" id="qcrumb" aria-label="目前位置"></nav>
+      <h2>AI 問答式探索</h2>
+      <p class="hint">描述孩子的情況，讓 AI 幫你填寫下方五題。你可以修改條件，也可以直接自己選。</p>
+    </div>
+    <form class="qform" id="agent">
+      <fieldset class="q"><legend>想找什麼幫助？</legend>
+        <p>免費體驗「我住新北市板橋區，小孩讀小三，想找暑假的午餐」。你也可以直接填下方五題。</p>
+        <button type="submit" class="cta" id="interpret">播放免費查詢範例</button>
+        <details><summary>管理者即時 AI 查詢</summary>
+        <label for="situation">情境（請省略姓名、電話與詳細地址）</label>
+        <textarea id="situation" rows="2" maxlength="500"></textarea>
+        <label>管理密碼 <input id="queryPassword" type="password" autocomplete="off"></label>
+        <button type="submit" id="liveQuery">交給 Claude 整理一次</button></details>
+        <p role="status" aria-live="polite" id="agentStatus"></p>
+      </fieldset>
+    </form>
+    <form class="qform" id="qform">
+      <fieldset class="q"><legend><span class="e-k">01</span>住在哪裡？</legend>
+        <div class="sel2">
+          <label class="sr" for="qc" style="position:absolute;left:-9999px">縣市</label>
+          <select id="qc"><option value="">選擇縣市（不確定可略過）</option></select>
+          <label class="sr" for="qd" style="position:absolute;left:-9999px">行政區</label>
+          <select id="qd" disabled><option value="">選擇行政區</option></select>
+        </div>
+        <p class="sub">戶籍和實際住處不同時，選孩子實際生活、上學的地方。</p>
+      </fieldset>
+      <fieldset class="q"><legend><span class="e-k">02</span>孩子現在是？</legend>
+        <div class="opts" id="qa"></div>
+      </fieldset>
+      <fieldset class="q"><legend><span class="e-k">03</span>家裡的狀況（可複選）</legend>
+        <div class="opts" id="qs"></div>
+        <p class="sub">低收入戶、中低收入戶是向公所申請核定的身分。沒有身分但生活困難，很多資源經學校老師或社工評估後也能使用。</p>
+      </fieldset>
+      <fieldset class="q"><legend><span class="e-k">04</span>需要哪方面的幫助？（可複選）</legend>
+        <div class="opts" id="qn"></div>
+      </fieldset>
+      <fieldset class="q"><legend><span class="e-k">05</span>什麼時候需要？</legend>
+        <div class="opts" id="qt"></div>
+      </fieldset>
+      <button class="cta qsubmit" type="submit">看看我可以用的資源 <span aria-hidden="true">→</span></button>
+    </form>
+    <div class="qres" id="qres"></div>
+    <footer>結果依資料中的條件篩選，實際能否使用仍以各單位審核為準｜緊急求助：113 保護專線、110</footer>
+  </section>
+
+  <!-- 急難救助 -->
+  <section id="sos" hidden>
+    <div class="bar">
+      <nav class="crumb" id="scrumb" aria-label="目前位置"></nav>
+      <h2>急難救助</h2>
+      <p class="hint">遇到危險時，先到安全的地方再打電話。下面的號碼都可以免費撥打。</p>
+    </div>
+    <div class="panel">
+      <div class="hot" id="hot"></div>
+      <h3 style="font-size:18px;margin-top:10px">你遇到的是哪一種狀況？</h3>
+      <div class="sit" id="sit"></div>
+      <div class="localbox">
+        <h3 style="font-size:17px">查詢你所在縣市的求助窗口</h3>
+        <div class="sel2"><label for="sc" style="position:absolute;left:-9999px">縣市</label><select id="sc"><option value="">選擇縣市</option></select></div>
+        <div id="slocal"><p class="hint">選擇縣市後，會列出當地的家扶中心電話、超商緊急餐點、餐券計畫與縣市政府網站。</p></div>
+      </div>
+    </div>
+    <footer>號碼與服務內容整理於 2026 年 10 月 19 日｜手機上若點按無法撥號，請直接輸入號碼</footer>
+  </section>
+
+  <!-- 我想幫忙 -->
+  <section id="help" hidden>
+    <div class="bar">
+      <nav class="crumb" id="hcrumb" aria-label="目前位置"></nav>
+      <h2>我想幫忙</h2>
+      <p class="hint">機構缺什麼每天都在變，所以這裡不列出「目前缺幾件」，而是告訴你每個單位收什麼、怎麼查最新需求。每筆都標有最後查證日期，超過半年的會提醒你先確認。</p>
+    </div>
+    <nav class="jump" aria-label="跳到">
+      <button type="button" class="chip" data-jump="h-goods">捐物資</button>
+      <button type="button" class="chip" data-jump="h-money">捐款</button>
+      <button type="button" class="chip" data-jump="h-vol">當志工</button>
+      <button type="button" class="chip" data-jump="h-year">一年中的需求</button>
+      <button type="button" class="chip" data-jump="h-tips">捐贈前須知</button>
+    </nav>
+    <div class="panel">
+      <div class="legend2" id="statusLegend"></div>
+      <div class="hsec" id="h-goods"><h3>捐物資</h3><div class="rlist" id="hl-goods"></div></div>
+      <div class="hsec" id="h-money"><h3>捐款</h3><div class="rlist" id="hl-money"></div></div>
+      <div class="hsec" id="h-vol"><h3>當志工</h3><p class="hint">和孩子直接接觸的服務，通常需要先完成培訓，部分單位會面談或要求相關證明，這是為了保護孩子。</p><div class="rlist" id="hl-vol"></div></div>
+      <div class="hsec" id="h-year"><h3>一年中什麼時候需要什麼</h3>
+        <p class="hint">機構的需求每天在變，但一年中的循環很穩定。這是依各單位過去的活動整理出的常見規律，實際需求仍以單位公告為準。</p>
+        <ol class="year" id="yearline"></ol></div>
+      <div class="hsec" id="h-tips"><h3>捐贈前須知</h3><ul class="tips">
+        <li><b>先聯絡再寄送：</b>機構倉庫空間有限，先打電話或看需求頁，確認對方現在需要。</li>
+        <li><b>食品：</b>未拆封、效期至少還有 3 個月以上較受歡迎；生鮮與需冷藏的食品務必先詢問。</li>
+        <li><b>衣物：</b>洗淨、八成新以上、沒有破損或污漬；制服請拆掉名牌。很多實物銀行不收衣物，捐之前先確認。</li>
+        <li><b>捐款：</b>到衛福部「公益勸募管理系統」確認活動有許可；收據上應有勸募許可文號。遇到可疑募款，打 <span class="tel">165</span> 反詐騙專線。</li>
+        <li><b>當志工：</b>不要私下和受助孩子單獨聯絡或約見，所有互動透過機構安排。</li>
+      </ul></div>
+    </div>
+    <footer>捐助與志工資訊整理於 2026 年 10 月 20 日｜各單位需求與招募時間會變動，請以官方公告為準</footer>
+  </section>
+
+  <dialog id="repDlg" aria-labelledby="repTitle">
+    <form id="repForm" method="dialog" class="repform">
+      <h3 id="repTitle">回報資訊有誤</h3>
+      <p class="hint" id="repWhat"></p>
+      <fieldset class="opts" style="border:0;padding:0;margin:0">
+        <legend class="sr" style="position:absolute;left:-9999px">問題類型</legend>
+        <label class="opt"><input type="radio" name="rk" value="資訊過期" id="rk1" checked><span>資訊過期或已停辦</span></label>
+        <label class="opt"><input type="radio" name="rk" value="內容錯誤" id="rk2"><span>內容錯誤</span></label>
+        <label class="opt"><input type="radio" name="rk" value="連結失效" id="rk3"><span>連結失效</span></label>
+        <label class="opt"><input type="radio" name="rk" value="補充資源" id="rk4"><span>我知道其他資源</span></label>
+      </fieldset>
+      <label for="repMsg" class="hint">說明（例如正確的時間、電話或新網址）。按「下一步」後會整理成表單需要的內容，再開啟 Google 表單送出。</label>
+      <textarea id="repMsg" rows="4" maxlength="600"></textarea>
+      <div id="repOut" class="hint" role="status"></div>
+      <div class="dlgbtns"><button type="button" class="go" id="repCancel">取消</button><button type="submit" class="cta" id="repSend" style="padding:8px 20px;font-size:15px">下一步</button></div>
+    </form>
+  </dialog>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script>
+// ===================== 行政區資料 =====================
+const RAW = {
+"北部":{
+ "臺北市":"中正區 大同區 中山區 松山區 大安區 萬華區 信義區 士林區 北投區 內湖區 南港區 文山區",
+ "新北市":"板橋區 三重區 中和區 永和區 新莊區 新店區 樹林區 鶯歌區 三峽區 淡水區 汐止區 瑞芳區 土城區 蘆洲區 五股區 泰山區 林口區 深坑區 石碇區 坪林區 三芝區 石門區 八里區 平溪區 雙溪區 貢寮區 金山區 萬里區 烏來區",
+ "基隆市":"仁愛區 信義區 中正區 中山區 安樂區 暖暖區 七堵區",
+ "桃園市":"桃園區 中壢區 大溪區 楊梅區 蘆竹區 大園區 龜山區 八德區 龍潭區 平鎮區 新屋區 觀音區 復興區",
+ "新竹市":"東區 北區 香山區",
+ "新竹縣":"竹北市 竹東鎮 新埔鎮 關西鎮 湖口鄉 新豐鄉 芎林鄉 橫山鄉 北埔鄉 寶山鄉 峨眉鄉 尖石鄉 五峰鄉",
+ "宜蘭縣":"宜蘭市 羅東鎮 蘇澳鎮 頭城鎮 礁溪鄉 壯圍鄉 員山鄉 冬山鄉 五結鄉 三星鄉 大同鄉 南澳鄉"},
+"中部":{
+ "苗栗縣":"苗栗市 頭份市 竹南鎮 後龍鎮 通霄鎮 苑裡鎮 卓蘭鎮 造橋鄉 西湖鄉 頭屋鄉 公館鄉 銅鑼鄉 三義鄉 大湖鄉 獅潭鄉 三灣鄉 南庄鄉 泰安鄉",
+ "臺中市":"中區 東區 南區 西區 北區 北屯區 西屯區 南屯區 太平區 大里區 霧峰區 烏日區 豐原區 后里區 石岡區 東勢區 和平區 新社區 潭子區 大雅區 神岡區 大肚區 沙鹿區 龍井區 梧棲區 清水區 大甲區 外埔區 大安區",
+ "彰化縣":"彰化市 員林市 和美鎮 鹿港鎮 溪湖鎮 二林鎮 田中鎮 北斗鎮 花壇鄉 芬園鄉 大村鄉 永靖鄉 伸港鄉 線西鄉 福興鄉 秀水鄉 埔心鄉 埔鹽鄉 大城鄉 芳苑鄉 竹塘鄉 社頭鄉 二水鄉 田尾鄉 埤頭鄉 溪州鄉",
+ "南投縣":"南投市 埔里鎮 草屯鎮 竹山鎮 集集鎮 名間鄉 鹿谷鄉 中寮鄉 魚池鄉 國姓鄉 水里鄉 信義鄉 仁愛鄉",
+ "雲林縣":"斗六市 斗南鎮 虎尾鎮 西螺鎮 土庫鎮 北港鎮 古坑鄉 大埤鄉 莿桐鄉 林內鄉 二崙鄉 崙背鄉 麥寮鄉 東勢鄉 褒忠鄉 臺西鄉 元長鄉 四湖鄉 口湖鄉 水林鄉"},
+"南部":{
+ "嘉義市":"東區 西區",
+ "嘉義縣":"太保市 朴子市 布袋鎮 大林鎮 民雄鄉 溪口鄉 新港鄉 六腳鄉 東石鄉 義竹鄉 鹿草鄉 水上鄉 中埔鄉 竹崎鄉 梅山鄉 番路鄉 大埔鄉 阿里山鄉",
+ "臺南市":"新營區 鹽水區 白河區 柳營區 後壁區 東山區 麻豆區 下營區 六甲區 官田區 大內區 佳里區 學甲區 西港區 七股區 將軍區 北門區 新化區 善化區 新市區 安定區 山上區 玉井區 楠西區 南化區 左鎮區 仁德區 歸仁區 關廟區 龍崎區 永康區 東區 南區 北區 安南區 安平區 中西區",
+ "高雄市":"鹽埕區 鼓山區 左營區 楠梓區 三民區 新興區 前金區 苓雅區 前鎮區 旗津區 小港區 鳳山區 林園區 大寮區 大樹區 大社區 仁武區 鳥松區 岡山區 橋頭區 燕巢區 田寮區 阿蓮區 路竹區 湖內區 茄萣區 永安區 彌陀區 梓官區 旗山區 美濃區 六龜區 甲仙區 杉林區 內門區 茂林區 桃源區 那瑪夏區",
+ "屏東縣":"屏東市 潮州鎮 東港鎮 恆春鎮 萬丹鄉 長治鄉 麟洛鄉 九如鄉 里港鄉 鹽埔鄉 高樹鄉 萬巒鄉 內埔鄉 竹田鄉 新埤鄉 枋寮鄉 新園鄉 崁頂鄉 林邊鄉 南州鄉 佳冬鄉 琉球鄉 車城鄉 滿州鄉 枋山鄉 三地門鄉 霧臺鄉 瑪家鄉 泰武鄉 來義鄉 春日鄉 獅子鄉 牡丹鄉"},
+"東部":{
+ "花蓮縣":"花蓮市 鳳林鎮 玉里鎮 新城鄉 吉安鄉 壽豐鄉 光復鄉 豐濱鄉 瑞穗鄉 富里鄉 秀林鄉 萬榮鄉 卓溪鄉",
+ "臺東縣":"臺東市 成功鎮 關山鎮 卑南鄉 鹿野鄉 池上鄉 東河鄉 長濱鄉 太麻里鄉 大武鄉 綠島鄉 海端鄉 延平鄉 金峰鄉 達仁鄉 蘭嶼鄉"},
+"離島":{
+ "澎湖縣":"馬公市 湖西鄉 白沙鄉 西嶼鄉 望安鄉 七美鄉",
+ "金門縣":"金城鎮 金湖鎮 金沙鎮 金寧鄉 烈嶼鄉 烏坵鄉",
+ "連江縣":"南竿鄉 北竿鄉 莒光鄉 東引鄉"}
+};
+const TOWNS = {}; const REGION_OF = {};
+for (const [rg, obj] of Object.entries(RAW)) for (const [c, s] of Object.entries(obj)) { TOWNS[c] = s.split(" "); REGION_OF[c] = rg; }
+const norm = s => (s || "").replace(/台/g, "臺").trim();
+
+const GOV = {"臺北市":"https://www.gov.taipei/","新北市":"https://www.ntpc.gov.tw/","基隆市":"https://www.klcg.gov.tw/","桃園市":"https://www.tycg.gov.tw/","新竹市":"https://www.hccg.gov.tw/","新竹縣":"https://www.hsinchu.gov.tw/","宜蘭縣":"https://www.e-land.gov.tw/","苗栗縣":"https://www.miaoli.gov.tw/","臺中市":"https://www.taichung.gov.tw/","彰化縣":"https://www.chcg.gov.tw/","南投縣":"https://www.nantou.gov.tw/","雲林縣":"https://www.yunlin.gov.tw/","嘉義市":"https://www.chiayi.gov.tw/","嘉義縣":"https://www.cyhg.gov.tw/","臺南市":"https://www.tainan.gov.tw/","高雄市":"https://www.kcg.gov.tw/","屏東縣":"https://www.pthg.gov.tw/","花蓮縣":"https://www.hl.gov.tw/","臺東縣":"https://www.taitung.gov.tw/","澎湖縣":"https://www.penghu.gov.tw/","金門縣":"https://www.kinmen.gov.tw/","連江縣":"https://www.matsu.gov.tw/"};
+const NORTH8 = ["宜蘭縣","基隆市","臺北市","新北市","桃園市","新竹縣","新竹市","苗栗縣"];
+const MAPS = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+
+// 家扶中心（依 115 學年度第一學期「韌世代」獎助學金辦法所附一覽表）
+const CCF = [
+ {n:"基隆家扶中心",a:"基隆市基金一路110之87號",t:"02-2431-9000",cover:{"基隆市":"*","新北市":"瑞芳區 雙溪區 平溪區 貢寮區 汐止區 金山區 萬里區"}},
+ {n:"台北家扶中心",a:"臺北市大安區樂利路97號",t:"02-2736-2085",home:["臺北市","大安區"],cover:{"臺北市":"*"}},
+ {n:"新北市家扶中心",a:"新北市淡水區中正東路8-6號1樓",t:"02-2626-7476",home:["新北市","淡水區"],cover:{"新北市":"板橋區 中和區 永和區 土城區 樹林區 三重區 新莊區 蘆洲區 新店區 三峽區 鶯歌區 泰山區 五股區 林口區 深坑區 石碇區 坪林區 烏來區 淡水區 八里區 三芝區 石門區"}},
+ {n:"桃園家扶中心",a:"桃園市中壢區甘肅一街29號",t:"03-456-2195",home:["桃園市","中壢區"],cover:{"桃園市":"*"}},
+ {n:"新竹家扶中心",a:"新竹市光復路一段531巷72之8號",t:"03-567-8585",cover:{"新竹市":"*","新竹縣":"*"}},
+ {n:"苗栗家扶中心",a:"苗栗縣竹南鎮博愛街518號",t:"037-461-234",home:["苗栗縣","竹南鎮"],cover:{"苗栗縣":"*"}},
+ {n:"北台中家扶中心",a:"臺中市豐原區豐原大道三段199號",t:"04-2523-2704",home:["臺中市","豐原區"],cover:{"臺中市":"大甲區 清水區 沙鹿區 大肚區 大安區 龍井區 外埔區 梧棲區 大里區 太平區 霧峰區 烏日區 神岡區 豐原區 石岡區 東勢區 大雅區 潭子區 和平區 新社區 后里區"}},
+ {n:"南台中家扶中心",a:"臺中市西屯區甘肅路一段67號",t:"04-2313-1234",home:["臺中市","西屯區"],cover:{"臺中市":"北屯區 西屯區 南屯區 北區 中區 西區 東區 南區"}},
+ {n:"彰化家扶中心",a:"彰化縣和美鎮彰美路五段160號",t:"04-756-9336",home:["彰化縣","和美鎮"],cover:{"彰化縣":"*"}},
+ {n:"南投家扶中心",a:"南投縣南投市民族路615號",t:"049-222-2080",home:["南投縣","南投市"],cover:{"南投縣":"*"}},
+ {n:"雲林家扶中心",a:"雲林縣虎尾鎮公安路201號",t:"05-632-3200",home:["雲林縣","虎尾鎮"],cover:{"雲林縣":"*"}},
+ {n:"嘉義家扶中心",a:"嘉義縣朴子市祥和二路西段2號3樓",t:"05-362-2085",home:["嘉義縣","朴子市"],cover:{"嘉義縣":"*","嘉義市":"*"}},
+ {n:"北台南家扶中心",a:"臺南市新營區東興六街49號",t:"06-632-4560",home:["臺南市","新營區"],cover:{"臺南市":"新營區 鹽水區 白河區 柳營區 後壁區 東山區 麻豆區 下營區 六甲區 官田區 大內區 佳里區 學甲區 西港區 七股區 將軍區 北門區 新化區 新市區 善化區 安定區 山上區 玉井區 楠西區 南化區 左鎮區 仁德區 歸仁區 關廟區 龍崎區 永康區"}},
+ {n:"南台南家扶中心",a:"臺南市中西區西賢一街139號",t:"06-250-6782",home:["臺南市","中西區"],cover:{"臺南市":"東區 南區 中西區 北區 安南區 安平區"}},
+ {n:"北高雄家扶中心",a:"高雄市岡山區竹圍東街182巷12號",t:"07-621-3993",home:["高雄市","岡山區"],cover:{"高雄市":"鳳山區 岡山區 旗山區 美濃區 大寮區 茄萣區 永安區 大社區 杉林區 仁武區 田寮區 燕巢區 路竹區 阿蓮區 甲仙區 大樹區 湖內區 桃源區 鳥松區 彌陀區 梓官區 內門區 茂林區 橋頭區 六龜區 林園區 那瑪夏區"}},
+ {n:"南高雄家扶中心",a:"高雄市苓雅區中正一路305號",t:"07-726-1651",home:["高雄市","苓雅區"],cover:{"高雄市":"楠梓區 左營區 鼓山區 三民區 苓雅區 新興區 前金區 鹽埕區 小港區 旗津區 前鎮區"}},
+ {n:"屏東家扶中心",a:"屏東縣屏東市大武路303號",t:"08-753-7123",home:["屏東縣","屏東市"],cover:{"屏東縣":"*"}},
+ {n:"宜蘭家扶中心",a:"宜蘭縣宜蘭市自強新路171號",t:"03-932-2591",home:["宜蘭縣","宜蘭市"],cover:{"宜蘭縣":"*"}},
+ {n:"花蓮家扶中心",a:"花蓮縣花蓮市民立里中興路75號",t:"03-823-6005",home:["花蓮縣","花蓮市"],cover:{"花蓮縣":"*"}},
+ {n:"台東家扶中心",a:"臺東縣臺東市正氣北路255巷74號",t:"089-323-804",home:["臺東縣","臺東市"],cover:{"臺東縣":"*"}},
+ {n:"澎湖家扶中心",a:"澎湖縣馬公市成功街75號",t:"06-927-6432",home:["澎湖縣","馬公市"],cover:{"澎湖縣":"*"}},
+ {n:"金門家扶中心",a:"金門縣金寧鄉環島北路二段579號",t:"082-326-139",home:["金門縣","金寧鄉"],cover:{"金門縣":"*"}},
+ {n:"馬祖家扶中心",a:"連江縣南竿鄉福沃村51-1號1樓",t:"0836-23545",home:["連江縣","南竿鄉"],cover:{"連江縣":"*"}}
+];
+// 博幼基金會據點與服務鄉鎮
+const BOYO_CENTERS = [
+ {c:"宜蘭縣",d:"大同鄉",n:"博幼基金會 宜蘭中心",a:"宜蘭縣大同鄉松羅西巷15號（另有大同國中辦公室）",t:"03-980-1096"},
+ {c:"南投縣",d:"埔里鎮",n:"博幼基金會 埔里中心（會本部）",a:"南投縣埔里鎮安四街131號",t:"049-291-5055"},
+ {c:"南投縣",d:"信義鄉",n:"博幼基金會 信義陳有蘭中心",a:"南投縣信義鄉明德村玉山路52-1號",t:"049-279-2885"},
+ {c:"南投縣",d:"水里鄉",n:"博幼基金會 信義濁水中心",a:"南投縣水里鄉民和村民和路157號",t:"049-274-2446"},
+ {c:"嘉義縣",d:"大埔鄉",n:"博幼基金會 大埔辦公室",a:"嘉義縣大埔鄉大埔村366號",t:"05-252-2307"},
+ {c:"屏東縣",d:"潮州鎮",n:"博幼基金會 屏東中心",a:"屏東縣潮州鎮光春里光春路252號4樓",t:"08-789-1996"},
+ {c:"澎湖縣",d:"馬公市",n:"博幼基金會 澎湖中心",a:"澎湖縣馬公市三多路56號2樓",t:"06-926-9097"},
+ {c:"臺東縣",d:"關山鎮",n:"博幼基金會 東部辦公室",a:"臺東縣關山鎮德高里西莊44號",t:"089-357-902"},
+ {c:"新竹縣",d:"竹東鎮",n:"博幼基金會 北部辦公室",a:"新竹縣竹東鎮中豐路二段351號2樓",t:"03-510-4518"}
+];
+const BOYO_AREAS = {"新竹縣":["竹東鎮","橫山鄉","尖石鄉","五峰鄉"],"臺中市":["沙鹿區"],"彰化縣":["芬園鄉"],"雲林縣":["口湖鄉","四湖鄉"],"嘉義縣":["阿里山鄉"],"屏東縣":["來義鄉"],"澎湖縣":["湖西鄉"]};
+
+// ===================== 資源規則 =====================
+// 每一筆：cat(food/cloth/edu)、name、url、scope、area、item、who、how（食、衣才有）、time、note、src
+function resourcesFor(c, d) {
+  const R = [];
+  const add = o => R.push(o);
+  const place = c + d;
+
+  // ---------- 食 ----------
+  if (NORTH8.includes(c)) add({cat:"food", scope:"北臺八縣市",
+    name:"幸福保衛站（超商兒少緊急餐點）", url:"https://www.ntpc.gov.tw/ch/home.jsp?id=28&dataserno=202312290014",
+    area:`${place}內貼有「幸福保衛站」標誌的統一（7-ELEVEN）、全家、萊爾富、OK 超商門市`,
+    item:"每人每餐約 100 元內的主食（飯、麵、麵包等）與飲料（不含酒類）",
+    who:"18 歲以下兒少（含中輟），在北臺八縣市就讀、設籍或在當地遇到急難；以「救急不救窮」為原則",
+    how:"免費。向店員說「需要領取幸福保衛站餐點」，店員會填寫關懷通報單，並在 24 小時內通報教育局或社會局，後續由學校或社工關懷",
+    time:"24 小時", src:"北臺區域幸福保衛站計畫；臺北市教育局家長信"});
+
+  const LOCAL_FOOD = {
+   "臺中市":[{name:"臺中市 寒暑假暨例假日安心午餐券", url:"https://www.tc.edu.tw/page/e78c96c9-54fc-453a-8119-72e5d4d0dcde/activity-school-content?id=93450",
+      area:`${c}內貼有「安心午餐券守護商店」標誌的 7-ELEVEN、全家、萊爾富、OK 超商與楓康超市`,
+      item:"午餐一份；面額 65 元，合作店家加碼後約可兌換 74–75 元餐點（需含主食，不可換汽水、咖啡、泡麵、零食）",
+      who:"臺中市高中以下清寒、經濟弱勢學生，需經學校申請核定",
+      how:"免費兌換。持臺中市數位學生證，選好餐點後到櫃台感應領餐；不得轉讓",
+      time:"寒暑假與例假日 11:00–14:00；颱風停班停課日改為全天", src:"臺中市教育局安心午餐券使用規範"},
+     {name:"臺中市 愛心守護站（超商熱食）", url:"https://www.society.taichung.gov.tw/",
+      area:`${c}內設有「愛心守護站」的超商門市`, item:"熱食與飲品",
+      who:"臨時有急需、但還沒申請安心午餐券的孩子", how:"免費。到門市求助兌換，超商會啟動後續關懷，必要時轉介社工",
+      time:"請自行查詢", src:"臺中市政府新聞資料"}],
+   "臺南市":[{name:"臺南市 寒假午餐補助與愛心餐食數位票卡", url:"https://udn.com/news/story/6885/9288856",
+      area:`${c}各國中小，以及全市多處超商與特約餐飲門市`,
+      item:"低收入戶學生：寒假午餐補助；中低收入戶、家庭突遭變故或導師認定清寒的學生到校參加活動時，學校提供每餐 70 元餐食；社會局另發「愛心餐食數位票卡」",
+      who:"經濟弱勢學生；數位票卡需經社工專業評估",
+      how:"免費。學校以餐券、簽單或等值食材提供；票卡可到合作超商與餐飲門市兌換",
+      time:"寒假期間（暑假是否辦理請自行查詢）", src:"臺南市教育局、社會局 2026 年 1 月新聞"}],
+   "高雄市":[{name:"高雄市 安心餐食數位票卡", url:"https://www.cw.com.tw/article/5141844",
+      area:`${c}內的合作超商門市（如萊爾富等）`,
+      item:"鮮食、牛奶、麵包、飯糰等餐點（金額依年度與合作店家加碼調整）",
+      who:"設籍或就讀高雄市的低收入戶等經濟弱勢學生",
+      how:"免費兌換。持一卡通數位學生證到合作超商兌餐",
+      time:"例假日與寒暑假", src:"高雄市政府、天下雜誌城市治理報導"}],
+   "彰化縣":[{name:"彰化縣 幸福餐券", url:"https://udn.com/news/story/6898/9315273",
+      area:`${c}內的合作超商與超市（萊爾富、OK、7-ELEVEN、台灣楓康），限縣內兌換`,
+      item:"午餐一份；每人每餐 70 元，部分超商加碼可換 80 元套餐或便當",
+      who:"國小低收入戶、中低收入戶、家庭突遭變故或經導師家訪認定的經濟弱勢學生",
+      how:"免費兌換。持數位學生證到合作店家領餐",
+      time:"寒假（暑假亦曾辦理，請自行查詢）", src:"彰化縣政府 2026 年 2 月新聞"}],
+   "雲林縣":[{name:"雲林縣 幸福飽胃站", url:"https://n.yam.com/Article/20240830618199",
+      area:`${c}內的四大超商門市`, item:"假期期間的午餐",
+      who:"家庭經濟困難的學童，由學校認定", how:"免費兌換。持智慧學生證到超商兌換餐點",
+      time:"學校放假、沒有營養午餐的期間（寒暑假等）", src:"雲林縣政府"}],
+   "花蓮縣":[{name:"花蓮縣 幸福午食券", url:"https://www.storm.mg/article/5187429",
+      area:`${c}各國中小（依學校發放）`, item:"假期午餐補助，每餐 80 元",
+      who:"低收入戶、中低收入戶，以及家庭突發狀況或經導師認定需要的學生",
+      how:"免費。由學校發放午食券，到校參加課輔活動或未到校期間皆可使用",
+      time:"暑假（其他假期請自行查詢）", src:"花蓮縣政府"}]
+  };
+  (LOCAL_FOOD[c] || []).forEach(o => add(Object.assign({cat:"food", scope:"全縣市"}, o)));
+
+  if (c === "嘉義縣" && ["義竹鄉","水上鄉","梅山鄉","鹿草鄉","竹崎鄉","朴子市","新港鄉","溪口鄉","太保市","阿里山鄉"].includes(d)) add({cat:"food", scope:"本區",
+    name:"嘉義縣 愛心待用餐", url:"https://udn.com/news/story/7326/9414590",
+    area:`${place}的友善店家（全縣已有 58 家餐廳與自助餐加入）`, item:"一般餐食",
+    who:"經嘉義縣物資銀行評估、三餐不穩定的弱勢家戶", how:"免費。憑物資銀行發給的餐券到友善店家兌換",
+    time:"請自行查詢", src:"嘉義縣政府、嘉義縣慈善團體聯合協會"});
+
+  if (c === "高雄市" && ["岡山區","燕巢區","永安區"].includes(d)) add({cat:"food", scope:"本區",
+    name:"高雄市實物銀行 岡山店", url:"https://www.nownews.com/news/6846352",
+    area:"高雄市岡山區（服務岡山、燕巢、永安一帶）", item:"多種民生物資，現場依需求自行挑選",
+    who:"弱勢民眾與經濟弱勢家庭（需經社福中心或區公所轉介）", how:"免費領取",
+    time:"請自行查詢", src:"高雄市社會局"});
+
+  add({cat:"food", scope:"全國",
+    name:"經濟弱勢學生午餐費補助", url: c==="屏東縣" ? "https://lunch.ptc.edu.tw/uploads/1720083929643dAkxfpOX.pdf" : "",
+    area:`${place}內的公立國中小（部分縣市含高中）`, item:"上學日學校營養午餐費用",
+    who:"低收入戶、中低收入戶、家庭突遭變故，或經導師家訪認定清寒的學生（各縣市細則不同）",
+    how:"免費（減免午餐費）。向學校導師或學務處申請",
+    time:"學期中上學日", src:"中央補助地方政府學校午餐經費支用要點、各縣市作業要點"});
+
+  const FB_NOTE = {
+    "高雄市":"高雄市共有 13 處實體店、73 個物資發放站，加上 18 個社福中心與 38 個區公所，共約 142 個服務據點。",
+    "桃園市":"桃園「安心實物銀行」分南北區總行與分行，社工依家戶狀況客製裝箱，並提供宅配、實物代券與愛心餐食券。",
+    "臺中市":"臺中市食物銀行一期 6 個月，到期仍有需要可再延長一期，原則上最多一年；向居住地所轄分店申請。",
+    "金門縣":"金門縣社會處提供突遭失業或變故家庭即時或短期物資，據點資料可在政府資料開放平臺查詢。",
+    "澎湖縣":"澎湖縣實物銀行提供營養品、尿布、清潔用品等民生物資。"};
+  const FB_URL = {"高雄市":"https://www.nownews.com/news/6846352","桃園市":"https://news.pts.org.tw/article/614267","臺中市":"https://eservices.taichung.gov.tw/Common/CaseFormDownload?pkid=30659","金門縣":"https://data.gov.tw/dataset/176016"};
+  add({cat:"food", scope:"全縣市",
+    name:`${c}實（食）物銀行`, url: FB_URL[c] || GOV[c],
+    area:`${c}社會局（處）、社福中心與${d}公所等發放據點`, item:"米、食材、生鮮與民生用品（依各地庫存）",
+    who:"低收入戶、中低收入戶，或經社工評估生活陷困的家庭",
+    how:"免費。經社工或公所評估後到據點領取，或由志工、物流配送；部分縣市改發食物券或實物券",
+    time:"請自行查詢", note: FB_NOTE[c] || "", src:"衛生福利部實（食）物銀行推動說明"});
+
+  add({cat:"food", scope:"全國",
+    name:"1919 食物銀行（中華基督教救助協會）", url:"https://www.ccra.org.tw/",
+    area:`服務範圍涵蓋全台 20 個縣市（含澎湖），是否涵蓋${d}請向協會洽詢`,
+    item:"食物包，每份市價約 3,000 元",
+    who:"生活在貧窮線邊緣的經濟弱勢家庭，多由當地 1919 服務中心（教會）發掘或轉介",
+    how:"免費。志工每兩個月親送到家，並定期關懷探訪",
+    time:"每兩個月一次", src:"中華基督教救助協會"});
+
+  // ---------- 衣 ----------
+  add({cat:"cloth", scope:"全國",
+    name:"校園二手制服、書籍與學用品回收再使用", url:"",
+    area:`${place}內各國中小與高中（由各校學務處或衛生組辦理）`,
+    item:"二手制服、運動服、外套、背心、書包，部分學校另有教科書與學用品",
+    who:"在校學生；多數學校會先通知弱勢家庭學生領用",
+    how:"免費領用。向學校學務處詢問",
+    time:"多在學期末、畢業季前後回收，新學期開學時發放；請自行查詢各校公告", src:"教育部「校園二手制服、書籍、學用品等回收再使用」實施計畫"});
+
+  if (c === "臺北市" || c === "雲林縣" || (c === "南投縣" && ["埔里鎮","仁愛鄉","國姓鄉","魚池鄉"].includes(d))) {
+    const NET = {
+      "臺北市": {area:"NET 臺北東區門市（由台北家扶中心安排）", url:"https://news.pts.org.tw/article/792187", extra:"每位孩子約 2,000 元購衣額度；1 歲以下幼兒另有 1 萬元提貨券", src:"公視新聞 2026 年；工商時報 2024 年"},
+      "雲林縣": {area:"NET 虎尾門市（由雲林家扶中心安排）", url:"https://www.ettoday.net/news/20260207/3115117.htm", extra:"2026 年邀請 200 戶、近千名親子；新生兒另有 1 萬元提貨券", src:"ETtoday 2026 年 2 月"},
+      "南投縣": {area:"NET 埔里門市（由南投家扶中心安排，2026 年邀請仁愛、國姓、魚池、埔里四鄉鎮）", url:"https://udn.com/news/story/7241/9286280", extra:"2026 年共 60 名兒少受邀", src:"聯合新聞網 2026 年 1 月"}
+    }[c];
+    add({cat:"cloth", scope: c === "南投縣" ? "本區" : "全縣市",
+      name:`NET × ${c === "臺北市" ? "台北" : c === "雲林縣" ? "雲林" : "南投"}家扶 春節選新衣`, url:NET.url,
+      area:NET.area, item:`過年新衣，孩子在門市自己挑選；${NET.extra}`,
+      who:"家扶中心受扶助家庭的兒童與青少年；名額有限，家扶會依孩子人數、家庭狀況安排",
+      how:"免費。家扶發給購衣提貨券，由家長或社工陪同到門市挑選，活動當天門市封館專場",
+      time:"每年農曆春節前（2026 年於 1–2 月舉辦）", src:NET.src,
+      note:"這是品牌與家扶合作的年度活動，不是固定窗口；想參加需先成為家扶服務家庭，請洽當地家扶中心。"});
+  }
+  add({cat:"cloth", scope:"全國",
+    name:"軍公教遺族子女制服費補助", url:"https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/278/relfile/66544/166641/665c3142-adb3-42f0-9c63-4047f2fa70ed.pdf",
+    area:`${place}內就讀的公私立國中小與高中職（經學校申請）`,
+    item:"制服費補助：國中小全公費 2,000 元、半公費 1,000 元；高中職每年 2,000 元（金額以高雄市公告為例，各縣市可能不同）",
+    who:"父或母為軍公教人員且已過世、依法領受撫卹金的子女；因作戰或公務死亡為全公費，因病或意外死亡為半公費",
+    how:"免費（現金補助）。向學校提出申請，附撫卹令與戶籍資料，學校初審後送教育局核撥",
+    time:"每學年第一學期一次請領", src:"軍公教遺族就學費用優待規定；高雄市學生就學補助措施簡表、臺北市教育補助身分一覽表"});
+
+  // ---------- 教育 ----------
+  add({cat:"edu", scope:"全國",
+    name:"學習扶助（原補救教學）", url:"https://priori.moe.gov.tw/",
+    area:`${place}內各國中小`,
+    item:"國語、數學（國小一年級起）、英語（國小三年級起）小班補救課程；學習扶助資源平台另有在家自學教材",
+    who:"經篩選測驗、學習成就落後的國中小學生；經濟弱勢學生優先",
+    time:"依各校開班，多在放學後或第八節；請自行查詢", src:"教育部國民及學前教育署"});
+
+  add({cat:"edu", scope:"本區",
+    name:`${place}公共圖書館`, url: MAPS(place + " 圖書館"), urlLabel:"在地圖查看",
+    area:`${place}內的公共圖書館（點標題可在地圖上看到位置）`,
+    item:"免費借閱圖書、兒童閱覽室、說故事與閱讀活動、自修座位",
+    who:"所有人都可使用；兒童辦借書證多需家長同意",
+    time:"依各館開放時間，請自行查詢"});
+
+  const ccf = CCF.find(x => x.cover[c] && (x.cover[c] === "*" || x.cover[c].split(" ").includes(d)));
+  if (ccf) {
+    const isHome = ccf.home && ccf.home[0] === c && ccf.home[1] === d;
+    add({cat:"edu", scope: isHome ? "本區" : "服務本區",
+      name:ccf.n + "（家扶基金會）", url:"https://www.ccf.org.tw/",
+      area:`${ccf.a}（電話 ${ccf.t}）；負責戶籍在${d}的家庭`,
+      item:"弱勢家庭兒少經濟扶助、社工輔導、兒少保護與成長營隊；「韌世代」獎助學金（高中職、五專一學期 1 萬元，大學、碩士一學期 2 萬元）",
+      who:"經濟困難家庭的兒童與青少年。獎助學金需未滿 25 歲、上學期平均 75 分以上、非家扶經濟扶助對象、非政府列冊低收入戶，且家庭所得符合條件",
+      time:"服務時間請自行查詢；獎助學金每學期受理，115 學年度第一學期已於 9 月 11 日截止，10 月 23 日公告結果", src:"家扶基金會 115 學年度第一學期韌世代獎助學金申請辦法"});
+  }
+
+  BOYO_CENTERS.filter(b => b.c === c && b.d === d).forEach(b => add({cat:"edu", scope:"本區",
+    name:b.n, url:"https://www.boyo.org.tw/",
+    area:`${b.a}（電話 ${b.t}）`,
+    item:"免費課業輔導（以英文、數學為主），並由社工關懷家庭與生活狀況",
+    who:"經濟弱勢家庭的國中、國小學童", time:"學期中週一至週五放學後約 2–3 小時；寒暑假另有課程，請自行查詢", src:"博幼基金會官網據點資料"}));
+  if ((BOYO_AREAS[c] || []).includes(d) && !BOYO_CENTERS.some(b => b.c === c && b.d === d)) add({cat:"edu", scope:"本區",
+    name:"博幼基金會 課輔服務", url:"https://www.boyo.org.tw/",
+    area:`${place}（博幼曾公布的服務鄉鎮，現行據點請以官網為準）`,
+    item:"免費課業輔導（以英文、數學為主），並由社工關懷家庭與生活狀況",
+    who:"經濟弱勢家庭的國中、國小學童", time:"請自行查詢", src:"博幼基金會服務範圍資料"});
+
+  return R.map(r => tagResource(window.reviewedResource ? window.reviewedResource(c, d, r) : r));
+}
+
+// ===================== 標籤 =====================
+// 維度：type 類型、age 年齡學層、status 身分、time 時間、price 費用、method 方式。ANY＝不限。
+const WEEK = ["週一","週二","週三","週四","週五"];
+const TAG_RULES = [
+ ["選新衣", {type:["衣物","新衣"], age:["18歲以下"], status:["經濟弱勢"], time:["寒假"], price:["免費"], method:["現場","需申請"]}],
+ ["遺族子女制服費", {type:["制服","補助"], age:["國小","國中","高中"], status:["遺族"], time:["學期中"], price:["免費"], method:["學校","需申請"]}],
+ ["幸福保衛站", {type:["緊急餐點","餐點","早餐","午餐","晚餐"], age:["18歲以下"], status:["ANY","急難"], time:["24小時"], price:["免費"], method:["超商","現場"]}],
+ ["安心午餐券", {type:["午餐","餐點"], age:["國小","國中","高中"], status:["經濟弱勢"], time:["寒假","暑假","假日"], price:["免費","優惠"], method:["超商","學生證","需申請","學校"]}],
+ ["愛心守護站", {type:["緊急餐點","餐點"], age:["18歲以下"], status:["急難"], time:[], price:["免費"], method:["超商","現場"]}],
+ ["寒假午餐補助與愛心餐食", {type:["午餐","餐點"], age:["國小","國中"], status:["低收入戶","中低收入戶","經濟弱勢","急難"], time:["寒假"], price:["免費"], method:["學校","餐券","超商"]}],
+ ["安心餐食數位票卡", {type:["餐點","午餐"], age:["國小","國中","高中"], status:["低收入戶","經濟弱勢"], time:["假日","寒假","暑假"], price:["免費"], method:["超商","學生證"]}],
+ ["幸福餐券", {type:["午餐","餐點"], age:["國小"], status:["低收入戶","中低收入戶","經濟弱勢","急難"], time:["寒假","暑假"], price:["免費","優惠"], method:["超商","學生證"]}],
+ ["幸福飽胃站", {type:["午餐","餐點"], age:["國小","國中"], status:["經濟弱勢"], time:["寒假","暑假"], price:["免費"], method:["超商","學生證"]}],
+ ["幸福午食券", {type:["午餐","餐點"], age:["國小","國中"], status:["低收入戶","中低收入戶","經濟弱勢","急難"], time:["暑假"], price:["免費"], method:["學校","餐券"]}],
+ ["愛心待用餐", {type:["餐點"], age:[], status:["經濟弱勢"], time:[], price:["免費"], method:["餐券","需申請"], group:"district"}],
+ ["岡山店", {type:["食材","民生用品"], age:[], status:["低收入戶","中低收入戶","經濟弱勢"], time:[], price:["免費"], method:["現場","需申請"], group:"district"}],
+ ["午餐費補助", {type:["午餐","補助"], age:["國小","國中"], status:["低收入戶","中低收入戶","經濟弱勢","急難"], time:["學期中"], price:["免費"], method:["學校","需申請"]}],
+ ["實（食）物銀行", {type:["食材","民生用品"], age:[], status:["低收入戶","中低收入戶","經濟弱勢","急難"], time:[], price:["免費"], method:["需申請","現場","到家","餐券"]}],
+ ["1919", {type:["食材"], age:[], status:["經濟弱勢"], time:[], price:["免費"], method:["到家","需申請"]}],
+ ["二手制服", {type:["制服","書包","二手","衣物"], age:["國小","國中","高中"], status:["ANY","經濟弱勢"], time:[], price:["免費"], method:["學校"]}],
+ ["學習扶助", {type:["課輔","英文","數學","國語"], age:["國小","國中"], status:["學習落後","經濟弱勢"], time:["平日","放學後","學期中"], price:["免費"], method:["學校"]}],
+ ["公共圖書館", {type:["圖書館"], age:["ANY"], status:["ANY"], time:[], price:["免費"], method:["現場"], group:"district"}],
+ ["家扶", {type:["經濟扶助","社工關懷","兒少保護","營隊","獎助學金"], age:["18歲以下","高中","大學"], status:["經濟弱勢","急難"], time:[], price:["免費"], method:["需申請"]}],
+ ["課輔服務", {type:["課輔","英文","數學","社工關懷"], age:["國小","國中"], status:["經濟弱勢","偏鄉"], time:[], price:["免費"], method:[], group:"district"}],
+ ["博幼基金會", {type:["課輔","英文","數學","社工關懷"], age:["國小","國中"], status:["經濟弱勢","偏鄉"], time:["平日","放學後",...WEEK,"寒假","暑假"], price:["免費"], method:["現場"], group:"district"}]
+];
+function tagResource(r) {
+  const rule = TAG_RULES.find(([k]) => r.name.includes(k));
+  const t = rule ? rule[1] : {};
+  r.tags = {type:t.type||[], age:t.age||[], status:t.status||[], time:t.time||[], price:t.price||[], method:t.method||[]};
+  r.checked = r.checked || "2026-10-19";
+  r.group = t.group || (r.name.includes("選新衣") && r.scope === "本區" ? "district" : "county");
+  return r;
+}
+
+// ===================== 介面 =====================
+const $ = s => document.querySelector(s);
+const state = { county:null, town:null, filter:"all" };
+const CAT = { food:{label:"食", color:"var(--food)"}, cloth:{label:"衣", color:"var(--cloth)"}, edu:{label:"教育", color:"var(--edu)"} };
+let atlas = null, countyFeats = [], townFeats = [];
+
+function setView(v) { for (const id of ["home","explore","results","quiz","sos","help","updates"]) $("#" + id).hidden = id !== v; window.scrollTo(0, 0); }
+$("#start").addEventListener("click", () => { setView("explore"); showTaiwan(); });
+$("#brand").addEventListener("click", () => setView("home"));
+
+function crumb() {
+  const el = $("#crumb"); el.innerHTML = "";
+  const mk = (txt, fn) => { const b = document.createElement("button"); b.type = "button"; b.textContent = txt; b.onclick = fn; el.appendChild(b); };
+  const sep = () => { const s = document.createElement("span"); s.className = "sep"; s.textContent = "/"; el.appendChild(s); };
+  mk("首頁", () => setView("home"));
+  sep(); if (state.county) { mk("台灣", showTaiwan); sep(); const s = document.createElement("span"); s.textContent = state.county; el.appendChild(s); }
+  else { const s = document.createElement("span"); s.textContent = "台灣"; el.appendChild(s); }
+}
+
+const tip = $("#tip");
+function bindTip(sel, nameOf) {
+  sel.on("mousemove", function (ev, f) {
+    const box = $("#mapbox").getBoundingClientRect();
+    tip.hidden = false; tip.textContent = nameOf(f);
+    const z = document.documentElement.classList.contains("big") ? 1.3 : 1;
+    tip.style.left = ((ev.clientX - box.left) / z + 12) + "px"; tip.style.top = ((ev.clientY - box.top) / z + 12) + "px";
+  }).on("mouseleave", () => tip.hidden = true);
+}
+function keyClick(sel, fn) {
+  sel.attr("tabindex", 0).attr("role", "button")
+    .on("click", (ev, f) => fn(f))
+    .on("keydown", (ev, f) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); fn(f); } });
+}
+function rewind(f) { // 確保多邊形方向符合 d3 的球面規則
+  if (d3.geoArea(f) > 2 * Math.PI) {
+    const g = f.geometry;
+    const rev = poly => poly.map(r => r.slice().reverse());
+    if (g.type === "Polygon") g.coordinates = rev(g.coordinates);
+    else if (g.type === "MultiPolygon") g.coordinates = g.coordinates.map(rev);
+  }
+  return f;
+}
+const townCount = (c, d) => resourcesFor(c, d).length;
+function level(n, min, max) { if (max === min) return "l1"; const t = (n - min) / (max - min); return t > .66 ? "l2" : t > .33 ? "l1" : ""; }
+
+async function loadAtlas() {
+  if (atlas) return atlas;
+  const base = "https://cdn.jsdelivr.net/npm/taiwan-atlas@2021.9.20/towns-10t.json";
+  const tries = [
+    () => import(base + "/+esm").then(m => m.default),
+    () => import(base, { with: { type: "json" } }).then(m => m.default),
+    () => fetch(base).then(r => { if (!r.ok) throw 0; return r.json(); })
+  ];
+  for (const t of tries) { try { const d = await t(); if (d && d.objects) { atlas = d; break; } } catch (e) {} }
+  if (!atlas) throw new Error("no atlas");
+  const o = atlas.objects;
+  townFeats = topojson.feature(atlas, o.towns).features.map(rewind);
+  countyFeats = topojson.feature(atlas, o.counties).features.map(rewind);
+  townFeats.forEach(f => { f.c = norm(f.properties.COUNTYNAME); f.d = norm(f.properties.TOWNNAME); });
+  countyFeats.forEach(f => { f.c = norm(f.properties.COUNTYNAME); });
+  return atlas;
+}
+function mapFail() {
+  const box = $("#mapbox"); box.querySelectorAll("svg").forEach(s => s.remove());
+  $("#mapmsg").hidden = false;
+  $("#mapmsg").textContent = "地圖暫時無法載入，請直接使用右側（手機為下方）的清單選擇。";
+}
+function clearMap() { $("#mapbox").querySelectorAll("svg,.legend").forEach(s => s.remove()); tip.hidden = true; }
+function legend(text) {
+  const l = document.createElement("div"); l.className = "legend";
+  l.innerHTML = `<span><i style="background:var(--map0)"></i>資源較少</span><span><i style="background:var(--map1)"></i>中等</span><span><i style="background:var(--map2)"></i>資源較多</span><span>${text}</span>`;
+  $("#mapbox").appendChild(l);
+}
+
+// ---- 台灣地圖 ----
+async function showTaiwan() {
+  state.county = null; state.town = null; crumb();
+  $("#viewTitle").textContent = "選擇縣市";
+  renderCountyList();
+  clearMap(); $("#mapmsg").hidden = false; $("#mapmsg").textContent = "地圖載入中…";
+  try { await loadAtlas(); } catch (e) { return mapFail(); }
+  if (state.county) return;
+  $("#mapmsg").hidden = true;
+  const W = 600, H = 820;
+  const svg = d3.select("#mapbox").insert("svg", ".tip").attr("viewBox", `0 0 ${W} ${H}`).attr("aria-label", "台灣縣市地圖");
+  const outer = ["金門縣", "連江縣"];
+  const main = countyFeats.filter(f => !outer.includes(f.c));
+  const proj = d3.geoMercator().fitExtent([[170, 16], [590, 806]], { type:"FeatureCollection", features: main });
+  const counts = {}; for (const c of Object.keys(TOWNS)) counts[c] = TOWNS[c].reduce((s, d) => s + townCount(c, d), 0) / TOWNS[c].length;
+  const vals = Object.values(counts), mn = Math.min(...vals), mx = Math.max(...vals);
+  const cls = f => "area " + level(counts[f.c] || 0, mn, mx);
+  const draw = (g, feats, p) => {
+    const sel = g.selectAll("path").data(feats).join("path").attr("class", cls).attr("d", d3.geoPath(p)).attr("aria-label", f => f.c);
+    keyClick(sel, f => showCounty(f.c)); bindTip(sel, f => f.c);
+  };
+  draw(svg.append("g"), main, proj);
+  const insets = [{c:"連江縣", x:12, y:150, w:140, h:150}, {c:"金門縣", x:12, y:330, w:140, h:120}];
+  insets.forEach(b => {
+    const feats = countyFeats.filter(f => f.c === b.c); if (!feats.length) return;
+    const g = svg.append("g");
+    g.append("rect").attr("class", "inset").attr("x", b.x).attr("y", b.y).attr("width", b.w).attr("height", b.h).attr("rx", 6);
+    g.append("text").attr("class", "insetlbl").attr("x", b.x + 8).attr("y", b.y + 16).text(b.c);
+    const p = d3.geoMercator().fitExtent([[b.x + 10, b.y + 24], [b.x + b.w - 10, b.y + b.h - 10]], { type:"FeatureCollection", features: feats });
+    draw(g, feats, p);
+  });
+  legend("點選縣市進入行政區地圖");
+}
+function renderCountyList() {
+  const side = $("#side"); side.innerHTML = "";
+  const p = document.createElement("p"); p.className = "hint"; p.textContent = "點地圖上的縣市，或從下方清單選擇。";
+  side.appendChild(p);
+  for (const [rg, obj] of Object.entries(RAW)) {
+    const sec = document.createElement("div"); sec.className = "region";
+    sec.innerHTML = `<h3>${rg}</h3>`;
+    const chips = document.createElement("div"); chips.className = "chips";
+    Object.keys(obj).forEach(c => { const b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.textContent = c; b.onclick = () => showCounty(c); chips.appendChild(b); });
+    sec.appendChild(chips); side.appendChild(sec);
+  }
+}
+
+// ---- 縣市地圖 ----
+async function showCounty(c) {
+  state.county = c; state.town = null; state.filter = "all"; crumb();
+  $("#viewTitle").textContent = c;
+  renderTownSide();
+  window.scrollTo({ top: 0 });
+  clearMap();
+  if (!atlas) { try { await loadAtlas(); } catch (e) { return mapFail(); } }
+  if (state.county !== c) return;
+  $("#mapmsg").hidden = true;
+  const feats = townFeats.filter(f => f.c === c);
+  if (!feats.length) return mapFail();
+  const W = 600, H = 600;
+  const svg = d3.select("#mapbox").insert("svg", ".tip").attr("viewBox", `0 0 ${W} ${H}`).attr("aria-label", c + "行政區地圖");
+  const proj = d3.geoMercator().fitExtent([[12, 12], [W - 12, H - 12]], { type:"FeatureCollection", features: feats });
+  const path = d3.geoPath(proj);
+  const cnt = f => townCount(c, f.d); const vals = feats.map(cnt), mn = Math.min(...vals), mx = Math.max(...vals);
+  const sel = svg.append("g").selectAll("path").data(feats).join("path")
+    .attr("class", f => "area " + level(cnt(f), mn, mx)).attr("d", path).attr("aria-label", f => f.d).attr("data-town", f => f.d);
+  keyClick(sel, f => selectTown(f.d)); bindTip(sel, f => f.d);
+  svg.append("g").selectAll("text").data(feats.filter(f => path.area(f) > 260)).join("text")
+    .attr("class", "lbl").attr("transform", f => `translate(${path.centroid(f)})`).attr("dy", "0.35em").text(f => f.d);
+  legend("點選行政區查看資源");
+}
+function renderTownSide() {
+  const side = $("#side"); side.innerHTML = "";
+  const head = document.createElement("div"); head.className = "region";
+  head.innerHTML = `<h3>${state.county}・${TOWNS[state.county].length} 個行政區</h3>`;
+  const chips = document.createElement("div"); chips.className = "chips";
+  TOWNS[state.county].forEach(d => { const b = document.createElement("button"); b.type = "button"; b.className = "chip" + (d === state.town ? " sel" : ""); b.textContent = d; b.onclick = () => selectTown(d); chips.appendChild(b); });
+  head.appendChild(chips); side.appendChild(head);
+  const panel = document.createElement("div"); panel.className = "panel"; panel.id = "panel"; side.appendChild(panel);
+  renderPanel();
+}
+function selectTown(d) {
+  state.town = d; state.filter = "all";
+  document.querySelectorAll("#mapbox .area").forEach(p => p.classList.toggle("sel", p.dataset.town === d));
+  document.querySelectorAll("#side .chip").forEach(b => b.classList.toggle("sel", b.textContent === d));
+  renderPanel();
+  if (window.innerWidth <= 820) $("#panel").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+}
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+function renderPanel() {
+  const panel = $("#panel"); if (!panel) return;
+  if (!state.town) { panel.innerHTML = `<div class="empty">點選地圖上的行政區，或上方清單中的行政區名稱，查看當地的食、衣、教育資源。</div>`; return; }
+  const list = resourcesFor(state.county, state.town);
+  const n = k => list.filter(r => r.cat === k).length;
+  const tabs = [["all", "全部", list.length], ["food", "食", n("food")], ["cloth", "衣", n("cloth")], ["edu", "教育", n("edu")]];
+  let html = `<div class="panel-head"><div class="eyebrow">${esc(state.county)}</div><h3>${esc(state.town)}</h3><div class="tabs" role="group" aria-label="篩選類別">` +
+    tabs.map(([k, l, c]) => `<button type="button" class="tab" data-f="${k}" aria-pressed="${state.filter === k}">${l}<span class="n">${c}</span></button>`).join("") + `</div></div>`;
+  for (const k of ["food", "cloth", "edu"]) {
+    if (state.filter !== "all" && state.filter !== k) continue;
+    const items = list.filter(r => r.cat === k); if (!items.length) continue;
+    html += `<div class="group"><h4><span class="dot" style="background:${CAT[k].color}"></span>${CAT[k].label}</h4>`;
+    for (const r of items) {
+      const title = r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a><span class="ext" aria-hidden="true">↗</span>` : esc(r.name);
+      html += `<article class="card ${k}"><div class="card-top"><h5>${title}</h5><span class="scope">${esc(r.scope)}</span></div><ul>` +
+        `<li><b>地點範圍：</b>${esc(r.area)}</li>` +
+        `<li><b>提供物品／服務：</b>${esc(r.item)}</li>` +
+        `<li><b>提供對象：</b>${esc(r.who)}</li>` +
+        (k !== "edu" ? `<li><b>提供方式：</b>${esc(r.how || "請自行查詢")}</li>` : "") +
+        `<li><b>提供時間：</b>${esc(r.time || "請自行查詢")}</li></ul>` +
+        (r.note ? `<div class="src">${esc(r.note)}</div>` : "") +
+        (r.src ? `<div class="src">資料來源：${esc(r.src)}${r.url ? "" : "（無官方網站，請洽學校或單位）"}</div>` : "") +
+        metaRow(r.checked, r.name, state.county + state.town) + `</article>`;
+    }
+    html += `</div>`;
+  }
+  html += `<div class="helpnudge"><span>想幫助${esc(state.town)}的孩子？</span><button type="button" class="linkbtn" data-open="help">看看你可以怎麼幫忙 →</button></div>`;
+  panel.innerHTML = html;
+  panel.querySelectorAll(".tab").forEach(b => b.onclick = () => { state.filter = b.dataset.f; renderPanel(); });
+}
+
+// ===================== 搜尋 =====================
+// 正規化：台→臺、周/星期/禮拜→週、全形空白與標點→空白、英文小寫
+function qnorm(s) {
+  return (s || "").toLowerCase()
+    .replace(/[　，,、；;／/]+/g, " ")
+    .replace(/台/g, "臺").replace(/星期|禮拜|周/g, "週").replace(/拜(?=[一二三四五六日天])/g, "週")
+    .replace(/週天/g, "週日").replace(/十八/g, "18").replace(/歲以下|歲以內|歲之前/g, "歲以下");
+}
+const DIM_LABEL = {cat:"類別", type:"類型", age:"對象", status:"身分", time:"時間", price:"費用", method:"方式"};
+// [維度, 標籤（可多個＝任一符合）, 別名…]
+const DICT = [
+ ["cat",["food"],"食","食物","飲食","吃","吃的","吃飯"],
+ ["cat",["cloth"],"衣","衣服","服裝","穿","穿的"],
+ ["cat",["edu"],"教育","學習","教學","讀書","念書","唸書","學業"],
+ ["type",["緊急餐點"],"緊急","緊急餐點","肚子餓","餓","挨餓","飢餓","臨時","救急"],
+ ["type",["早餐"],"早餐","早飯","早點"],
+ ["type",["午餐"],"午餐","中餐","午飯","營養午餐","中午"],
+ ["type",["晚餐"],"晚餐","晚飯","宵夜"],
+ ["type",["餐點"],"餐點","餐食","便當","熱食","吃飯","一餐","餐","飯糰","鮮食"],
+ ["type",["食材"],"食材","米","白米","生鮮","食物包","糧食","蔬果","奶粉"],
+ ["type",["民生用品"],"民生用品","民生物資","物資","日用品","生活用品","尿布","清潔用品","衛生紙"],
+ ["type",["制服"],"制服","校服","運動服","體育服","外套","背心"],
+ ["type",["衣物"],"衣物","衣服","舊衣","冬衣","保暖"],
+ ["type",["新衣"],"新衣","新衣服","買衣服","過年新衣"],
+ ["type",["書包"],"書包","學用品","文具","教科書","課本","二手書"],
+ ["type",["二手"],"二手","回收","再利用"],
+ ["type",["課輔"],"課輔","課後輔導","課業輔導","補習","補習班","家教","補救教學","補救","學習扶助","陪讀","課後","寫功課","作業"],
+ ["type",["英文"],"英文","英語"],
+ ["type",["數學"],"數學","算數"],
+ ["type",["國語"],"國語","國文","語文","中文"],
+ ["type",["圖書館"],"圖書館","借書","閱讀","看書","自習","自修","k書","說故事","繪本"],
+ ["type",["獎助學金"],"獎學金","助學金","獎助學金","學費","獎金"],
+ ["type",["補助"],"補助","減免","津貼","補貼"],
+ ["type",["經濟扶助"],"經濟扶助","生活補助","扶助","認養"],
+ ["type",["社工關懷"],"社工","關懷","輔導","心理","訪視","諮商"],
+ ["type",["兒少保護"],"保護","受虐","家暴","兒少保護"],
+ ["type",["營隊"],"營隊","夏令營","冬令營","活動"],
+ ["age",["學齡前"],"學齡前","幼兒園","幼稚園","幼兒","嬰幼兒","學前"],
+ ["age",["學齡前"],"學齡前","幼兒園","幼稚園","幼兒","嬰幼兒","學前"],
+ ["age",["國小"],"國小","小學","國小生","小學生","兒童","小朋友","小孩","國小學童"],
+ ["age",["國中"],"國中","國中生","初中","國一","國二","國三"],
+ ["age",["國中","高中"],"中學","中學生"],
+ ["age",["國小","國中"],"學童","國中小","國中小學生"],
+ ["age",["高中"],"高中","高中生","高職","高中職","五專","高一","高二","高三"],
+ ["age",["大學"],"大學","大學生","大專","碩士","研究生","大專生"],
+ ["age",["未成年"],"未成年","18歲以下","18歲","兒少","青少年","少年","孩子","小孩子","未滿18歲"],
+ ["age",["學生"],"學生","在學","在校生","學生身分"],
+ ["status",["低收入戶"],"低收","低收入","低收入戶","低收戶"],
+ ["status",["中低收入戶"],"中低收","中低收入","中低收入戶","中低"],
+ ["status",["經濟弱勢"],"弱勢","經濟弱勢","清寒","貧窮","窮","經濟困難","家境困難","弱勢家庭","貧困","沒錢"],
+ ["status",["急難"],"急難","變故","突發","突遭變故","失業","意外","緊急狀況"],
+ ["status",["學習落後"],"學習落後","成績不好","成績差","跟不上","低成就","落後"],
+ ["status",["遺族"],"遺族","軍公教遺族","撫卹","父母過世","父親過世","母親過世"],
+ ["status",["偏鄉"],"偏鄉","原鄉","原住民","偏遠","部落"],
+ ["time",["24小時"],"24小時","24h","全天","隨時","半夜","深夜","夜間","晚上"],
+ ["time",["平日"],"平日","上學日","週間","工作日","上課日","上課期間"],
+ ["time",["假日"],"假日","例假日","週末","六日","放假","放假日","連假"],
+ ["time",["寒假"],"寒假","過年","春節"],
+ ["time",["暑假"],"暑假","夏天"],
+ ["time",["寒假","暑假"],"寒暑假","長假","假期"],
+ ["time",["放學後"],"放學後","放學","下午","傍晚","下課後"],
+ ["time",["學期中"],"學期中","開學","學期間","上學期間"],
+ ["price",["免費"],"免費","不用錢","不要錢","0元","零元","free","免錢","贈送","免費領取"],
+ ["price",["優惠"],"打折","優惠","折扣","便宜","加碼","半價","折價","特價"],
+ ["method",["超商"],"超商","便利商店","7-11","711","7-eleven","小七","統一","全家","萊爾富","ok","來來","楓康","超市"],
+ ["method",["餐券"],"餐券","票卡","兌換券","食物券","券","兌換"],
+ ["method",["學生證"],"學生證","數位學生證","悠遊卡","一卡通","智慧學生證"],
+ ["method",["到家"],"宅配","送到家","到府","親送","外送","配送","到家"],
+ ["method",["學校"],"學校","學務處","導師","老師","班導"],
+ ["method",["需申請"],"申請","報名","登記","審核"],
+ ["method",["現場"],"現場","直接去","臨櫃","親自","自取"]
+];
+["週一","週二","週三","週四","週五","週六","週日"].forEach(w => DICT.push(["time",[w],w]));
+DICT.push(["time",["週一","週二","週三","週四","週五"],"週一到週五","週一至週五"]);
+const ALIAS = new Map();
+for (const [dim, tags, ...als] of DICT) for (const a of als) { const k = qnorm(a); if (!ALIAS.has(k)) ALIAS.set(k, {dim, tags}); }
+// 查詢標籤 → 可滿足的資料標籤（上位概念）
+const SAT = {
+  "低收入戶":["低收入戶","經濟弱勢"], "中低收入戶":["中低收入戶","經濟弱勢"], "經濟弱勢":["經濟弱勢","低收入戶","中低收入戶"],
+  "平日":["平日",...WEEK], "假日":["假日","週六","週日"],
+  "餐點":["餐點","早餐","午餐","晚餐","緊急餐點"], "衣物":["衣物","制服","新衣"], "補助":["補助","獎助學金","經濟扶助"],
+  "課輔":["課輔","英文","數學","國語"]
+};
+// 資料標籤展開（下位概念自動補齊）
+function expand(dim, tags) {
+  const s = new Set(tags);
+  if (dim === "age") {
+    if (s.has("18歲以下")) ["學齡前","國小","國中","高中"].forEach(x => s.add(x));
+    if (["國小","國中","高中"].some(x => s.has(x))) { s.add("未成年"); s.add("學生"); }
+    if (s.has("大學")) s.add("學生");
+  }
+  if (dim === "time") {
+    if (s.has("24小時")) ["平日","假日","寒假","暑假","放學後","學期中",...WEEK,"週六","週日"].forEach(x => s.add(x));
+    if (s.has("平日") || s.has("學期中")) WEEK.forEach(x => s.add(x));
+    if (s.has("學期中")) s.add("平日");
+    if (s.has("假日")) { s.add("週六"); s.add("週日"); }
+  }
+  return s;
+}
+
+// 地點索引
+const LOC = new Map(); // 別名 → [{c,d|null}]
+function addLoc(k, v) { k = qnorm(k); if (!k) return; if (!LOC.has(k)) LOC.set(k, []); LOC.get(k).push(v); }
+for (const c of Object.keys(TOWNS)) {
+  addLoc(c, {c, d:null}); addLoc(c.slice(0, -1), {c, d:null});
+  for (const d of TOWNS[c]) {
+    addLoc(d, {c, d}); const sh = d.slice(0, -1); if (sh.length >= 2) addLoc(sh, {c, d});
+    addLoc(c + d, {c, d}); addLoc(c.slice(0, -1) + d, {c, d}); if (sh.length >= 2) { addLoc(c + sh, {c, d}); addLoc(c.slice(0, -1) + sh, {c, d}); }
+  }
+}
+for (const [rg, obj] of Object.entries(RAW)) Object.keys(obj).forEach(c => addLoc(rg, {c, d:null}));
+["北臺灣","北臺"].forEach(k => Object.keys(RAW["北部"]).forEach(c => addLoc(k, {c, d:null})));
+function locSet(arr) { const s = new Set(); for (const {c, d} of arr) (d ? [d] : TOWNS[c]).forEach(x => s.add(c + "|" + x)); return s; }
+const locLabel = arr => [...new Set(arr.map(({c, d}) => d ? c + d : c))].slice(0, 4).join("、") + (arr.length > 4 ? "…" : "");
+
+// 預先建立索引：每個（縣市、行政區、資源）一筆
+let INDEX = null;
+function buildIndex() {
+  INDEX = [];
+  for (const c of Object.keys(TOWNS)) for (const d of TOWNS[c]) for (const r of resourcesFor(c, d)) {
+    const ex = {}; for (const k of Object.keys(r.tags)) ex[k] = expand(k, r.tags[k]);
+    ex.cat = new Set([r.cat]);
+    INDEX.push({ c, d, r, ex, nname: qnorm(r.name), ntext: qnorm([r.area, r.item, r.who, r.how, r.time, r.note].join(" ")),
+      key: r.group === "district" ? c + "|" + d + "|" + r.name : c + "|" + r.name });
+  }
+}
+
+function parseQuery(q) {
+  const terms = qnorm(q).split(/\s+/).filter(Boolean);
+  const out = { loc:null, locTerms:[], tags:[], free:[] };
+  for (const t of terms) {
+    if (LOC.has(t)) {
+      const s = locSet(LOC.get(t)); out.locTerms.push({t, label: locLabel(LOC.get(t))});
+      if (!out.loc) out.loc = s;
+      else { const inter = new Set([...out.loc].filter(x => s.has(x))); out.loc = inter.size ? inter : new Set([...out.loc, ...s]); }
+    } else if (ALIAS.has(t)) out.tags.push(Object.assign({t}, ALIAS.get(t)));
+    else {
+      // 去掉常見尾字再試一次（如「國中生的」「新店的」）
+      const t2 = t.replace(/(的|們|類|相關)$/, "");
+      if (t2 !== t && LOC.has(t2)) { out.locTerms.push({t, label: locLabel(LOC.get(t2))}); const s = locSet(LOC.get(t2)); out.loc = out.loc ? new Set([...out.loc].filter(x => s.has(x))) : s; }
+      else if (t2 !== t && ALIAS.has(t2)) out.tags.push(Object.assign({t}, ALIAS.get(t2)));
+      else out.free.push(t);
+    }
+  }
+  return out;
+}
+function runSearch(q) { const P = parseQuery(q); return { P, list: evaluate(P) }; }
+function evaluate(P) {
+  if (!INDEX) buildIndex();
+  const groups = new Map();
+  for (const e of INDEX) {
+    if (P.loc && !P.loc.has(e.c + "|" + e.d)) continue;
+    let score = 0, ok = true; const hit = [], unk = [];
+    for (const tg of P.tags) {
+      const have = e.ex[tg.dim];
+      if (!have || have.size === 0) { unk.push(tg); score += 0.3; continue; }      // 資料沒標示這一類 → 仍列出
+      if (have.has("ANY")) { hit.push(tg); score += 1; continue; }
+      const sat = tg.tags.flatMap(x => SAT[x] || [x]);
+      if (sat.some(x => have.has(x))) { hit.push(tg); score += 2; } else { ok = false; break; }
+    }
+    if (!ok) continue;
+    for (const f of P.free) {
+      if (e.nname.includes(f)) score += 4; else if (e.ntext.includes(f)) score += 1; else { ok = false; break; }
+    }
+    if (!ok) continue;
+    if (e.r.scope === "本區" || e.r.scope === "服務本區") score += 0.2;
+    let g = groups.get(e.key);
+    if (!g) { g = { e, score, hit, unk, towns: [] }; groups.set(e.key, g); }
+    g.towns.push(e.d);
+  }
+  return [...groups.values()].sort((a, b) => b.score - a.score || Object.keys(TOWNS).indexOf(a.e.c) - Object.keys(TOWNS).indexOf(b.e.c));
+}
+function cardFor(g, idx, why) {
+  const r = g.e.r, k = r.cat, c = g.e.c, n = TOWNS[c].length;
+  const loc = g.nation ? "全臺灣各縣市" : g.towns.length === 1 ? c + " " + g.towns[0] : g.towns.length === n ? `${c}（全部 ${n} 區）` : `${c}（${g.towns.length} 區：${g.towns.slice(0, 5).join("、")}${g.towns.length > 5 ? "…" : ""}）`;
+  const title = r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a><span class="ext" aria-hidden="true">↗</span>` : esc(r.name);
+  const tags = [...new Set(Object.values(r.tags).flatMap(v => v.filter(x => x !== "ANY")))].slice(0, 10).map(x => `<span class="tg">${esc(x)}</span>`).join("");
+  const unk = g.unk.map(t => `<span class="tg unk">未標示${DIM_LABEL[t.dim]}：請自行確認</span>`).join("");
+  return `<article class="rcard ${k}"><div class="card-top"><h5>${title}</h5><span class="scope">${CAT[k].label}・${esc(r.scope)}</span></div>
+    <div class="loc">${esc(loc)}</div>
+    <p class="sum">${esc(r.item)}</p>
+    ${why ? `<p class="sum"><b>申請條件：</b>${esc(r.who)}</p>` : ""}
+    <div class="tagrow">${tags}${unk}</div>
+    <details><summary>完整資訊</summary><ul>
+      <li><b>地點範圍：</b>${esc(r.area)}</li><li><b>提供物品／服務：</b>${esc(r.item)}</li><li><b>提供對象：</b>${esc(r.who)}</li>
+      ${k !== "edu" ? `<li><b>提供方式：</b>${esc(r.how || "請自行查詢")}</li>` : ""}<li><b>提供時間：</b>${esc(r.time || "請自行查詢")}</li></ul>
+      ${r.note ? `<div class="src">${esc(r.note)}</div>` : ""}</details>
+    ${metaRow(r.checked, r.name, g.nation ? "全臺灣" : c + (g.towns.length === 1 ? g.towns[0] : ""))}
+    <div class="ract">${g.nation ? "" : `<button type="button" class="go" data-i="${idx}">在地圖查看 ${esc(c + (g.towns.length === 1 ? g.towns[0] : ""))} →</button>`}</div></article>`;
+}
+function bindGo(container, list) {
+  container.querySelectorAll(".go").forEach(b => b.onclick = async () => {
+    const g = list[+b.dataset.i]; setView("explore"); await showCounty(g.e.c); selectTown(g.towns[0]);
+  });
+}
+
+const PER = 20; let lastSearch = null;
+function doSearch(q, page = 1) {
+  q = (q || "").trim(); $("#q").value = q;
+  if (!q) { $("#q").focus(); return; }
+  const res = (lastSearch && lastSearch.q === q) ? lastSearch.res : runSearch(q);
+  lastSearch = { q, res, page };
+  setView("results");
+  const rc = $("#rcrumb"); rc.innerHTML = "";
+  const hb = document.createElement("button"); hb.type = "button"; hb.textContent = "首頁"; hb.onclick = () => setView("home");
+  const mb = document.createElement("button"); mb.type = "button"; mb.textContent = "台灣地圖"; mb.onclick = () => { setView("explore"); showTaiwan(); };
+  const sp = () => { const s = document.createElement("span"); s.className = "sep"; s.textContent = "/"; return s; };
+  rc.append(hb, sp(), mb, sp(), Object.assign(document.createElement("span"), { textContent: "搜尋結果" }));
+  $("#rtitle").textContent = `「${q}」的搜尋結果`;
+
+  const { P, list } = res;
+  const pills = [];
+  P.locTerms.forEach(l => pills.push(`<span class="pill">地點：${esc(l.label)}</span>`));
+  P.tags.forEach(t => pills.push(`<span class="pill">${DIM_LABEL[t.dim]}：${esc(t.tags.map(x => CAT[x] ? CAT[x].label : x).join("或"))}</span>`));
+  P.free.forEach(f => pills.push(`<span class="pill free">名稱或內容含「${esc(f)}」</span>`));
+  $("#parsed").innerHTML = (pills.length ? "已辨識的條件：" + pills.join("") : "") +
+    (/志工|捐|幫忙|義工|贊助|認養|服務學習/.test(q) ? `<div class="alert" style="flex-basis:100%;background:var(--accent-soft);border-color:var(--accent)">想捐物資、捐款或當志工？請到<button type="button" class="linkbtn" data-open="help">我想幫忙</button>頁面，那裡整理了各單位的捐助與志工管道。</div>` : "");
+
+  const total = list.length, pages = Math.max(1, Math.ceil(total / PER));
+  page = Math.min(Math.max(1, page), pages);
+  $("#rmeta").textContent = total ? `共 ${total} 筆，第 ${page} / ${pages} 頁` : "";
+  const rl = $("#rlist");
+  if (!total) {
+    rl.innerHTML = `<div class="empty">找不到符合的資源。可以試著減少條件、改用較短的關鍵字（例如「家扶」而不是完整機構名），或改用地圖逐區瀏覽。</div>`;
+    $("#pager").innerHTML = ""; return;
+  }
+  rl.innerHTML = list.slice((page - 1) * PER, page * PER).map((g, i) => cardFor(g, (page - 1) * PER + i)).join("");
+  bindGo(rl, list);
+  const pg = $("#pager"); let h = `<button type="button" class="pg" data-p="${page - 1}" ${page === 1 ? "disabled" : ""}>上一頁</button>`;
+  for (let p = 1; p <= pages; p++) if (p === 1 || p === pages || Math.abs(p - page) <= 2) h += `<button type="button" class="pg" data-p="${p}" ${p === page ? 'aria-current="page"' : ""}>${p}</button>`;
+    else if (Math.abs(p - page) === 3) h += `<span>…</span>`;
+  h += `<button type="button" class="pg" data-p="${page + 1}" ${page === pages ? "disabled" : ""}>下一頁</button>`;
+  pg.innerHTML = h;
+  pg.querySelectorAll(".pg").forEach(b => b.onclick = () => { if (!b.disabled) doSearch(q, +b.dataset.p); });
+}
+$("#sform").addEventListener("submit", ev => { ev.preventDefault(); doSearch($("#q").value); });
+document.querySelectorAll(".ex").forEach(b => b.onclick = () => doSearch(b.textContent));
+
+// ===================== 大字版 =====================
+function setBig(on) {
+  document.documentElement.classList.toggle("big", on);
+  $("#bigBtn").setAttribute("aria-pressed", on);
+  $("#bigLbl").textContent = on ? "標準字" : "大字版";
+  try { localStorage.setItem("bigText", on ? "1" : "0"); } catch (e) {}
+}
+$("#bigBtn").addEventListener("click", () => setBig(!document.documentElement.classList.contains("big")));
+try { if (localStorage.getItem("bigText") === "1") setBig(true); } catch (e) {}
+
+// ===================== 共用：簡單麵包屑 =====================
+function simpleCrumb(el, label) {
+  el.innerHTML = "";
+  const b = document.createElement("button"); b.type = "button"; b.textContent = "首頁"; b.onclick = () => setView("home");
+  const s = document.createElement("span"); s.className = "sep"; s.textContent = "/";
+  el.append(b, s, Object.assign(document.createElement("span"), { textContent: label }));
+}
+function fillCounties(sel) { for (const c of Object.keys(TOWNS)) sel.add(new Option(c, c)); }
+
+// ===================== 問答式探索 =====================
+const QA = {
+  age: [["學齡前（幼兒園）","學齡前"],["國小","國小"],["國中","國中"],["高中職、五專","高中"],["大學","大學"],["不確定／略過",""]],
+  status: [["低收入戶","低收入戶"],["中低收入戶","中低收入戶"],["最近家裡發生變故（失業、生病、家人過世）","急難"],["生活困難，但沒有低收、中低收身分","經濟弱勢"],["孩子課業跟不上","學習落後"],["父或母是已過世的軍公教人員","遺族"],["都不是／不確定","none"]],
+  need: [["吃的","food"],["穿的","cloth"],["課業、學習","edu"],["都需要","all"]],
+  time: [["現在、今天就需要","now"],["上學日","平日"],["假日","假日"],["寒暑假","寒暑假"],["都可以","any"]]
+};
+function opts(el, name, list, type) {
+  el.innerHTML = list.map(([label, v], i) => `<label class="opt"><input type="${type}" name="${name}" value="${esc(v)}" id="${name}${i}"><span>${esc(label)}</span></label>`).join("");
+}
+opts($("#qa"), "qa", QA.age, "radio"); opts($("#qs"), "qs", QA.status, "checkbox");
+opts($("#qn"), "qn", QA.need, "checkbox"); opts($("#qt"), "qt", QA.time, "radio");
+fillCounties($("#qc"));
+$("#qc").addEventListener("change", () => {
+  const qd = $("#qd"); qd.innerHTML = '<option value="">選擇行政區（可略過）</option>';
+  const c = $("#qc").value; qd.disabled = !c; if (c) TOWNS[c].forEach(d => qd.add(new Option(d, d)));
+});
+// 互斥選項：「都不是」「都需要」
+function exclusive(name, solo) {
+  document.querySelectorAll(`input[name="${name}"]`).forEach(inp => inp.addEventListener("change", () => {
+    if (!inp.checked) return;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(o => { if (o !== inp && (inp.value === solo || o.value === solo)) o.checked = false; });
+  }));
+}
+exclusive("qs", "none"); exclusive("qn", "all");
+$("#goQuiz").addEventListener("click", () => { simpleCrumb($("#qcrumb"), "問答式探索"); setView("quiz"); });
+
+$("#qform").addEventListener("submit", ev => {
+  ev.preventDefault();
+  const c = $("#qc").value, d = $("#qd").value;
+  const age = (document.querySelector('input[name="qa"]:checked') || {}).value || "";
+  const st = [...document.querySelectorAll('input[name="qs"]:checked')].map(x => x.value).filter(v => v !== "none");
+  const nd = [...document.querySelectorAll('input[name="qn"]:checked')].map(x => x.value).filter(v => v !== "all");
+  const tm = (document.querySelector('input[name="qt"]:checked') || {}).value || "";
+  const P = { loc: null, tags: [], free: [] };
+  if (c) P.loc = locSet([{ c, d: d || null }]);
+  if (age) P.tags.push({ dim: "age", tags: [age] });
+  if (st.length) P.tags.push({ dim: "status", tags: st });
+  if (nd.length) P.tags.push({ dim: "cat", tags: nd });
+  if (tm === "平日" || tm === "假日") P.tags.push({ dim: "time", tags: [tm] });
+  if (tm === "寒暑假") P.tags.push({ dim: "time", tags: ["寒假", "暑假"] });
+  let list = evaluate(P);
+
+  // 沒選行政區時，把各區圖書館等「每區一筆」的資源合併成縣市一筆
+  if (!d) {
+    const m = new Map();
+    for (const g of list) {
+      const r = g.e.r;
+      const lib = r.name.includes("公共圖書館");
+      const nation = !c && r.scope === "全國";
+      const key = nation ? "全國|" + r.name : g.e.c + "|" + (lib ? "圖書館" : r.name);
+      if (!m.has(key)) {
+        const ng = Object.assign({}, g, { towns: [...g.towns] });
+        if (lib) ng.e = Object.assign({}, g.e, { r: Object.assign({}, r, { name: g.e.c + "各區公共圖書館", url: MAPS(g.e.c + " 公共圖書館"), area: g.e.c + "各鄉鎮市區的公共圖書館（點標題可在地圖上看到位置）" }) });
+        if (nation) ng.nation = true;
+        m.set(key, ng);
+      } else { const x = m.get(key); g.towns.forEach(t => { if (!x.towns.includes(t)) x.towns.push(t); }); x.score = Math.max(x.score, g.score); }
+    }
+    list = [...m.values()];
+  }
+  if (tm === "now") list.sort((a, b) => (b.e.r.tags.type.includes("緊急餐點") - a.e.r.tags.type.includes("緊急餐點")) || b.score - a.score);
+
+  const where = c ? c + (d || "") : "全臺灣";
+  const ageL = (QA.age.find(x => x[1] === age) || [""])[0];
+  const parts = [where, ageL && age ? ageL : "", ...st.map(v => QA.status.find(x => x[1] === v)[0]), ...nd.map(v => QA.need.find(x => x[1] === v)[0]), tm && tm !== "any" ? QA.time.find(x => x[1] === tm)[0] : ""].filter(Boolean);
+  let html = `<div class="qsum"><h3>找到 ${list.length} 項你可能可以使用的資源</h3><div class="parsed">${parts.map(p => `<span class="pill">${esc(p)}</span>`).join("")}</div>
+    <p class="hint">虛線標籤表示資料沒有寫明這項條件，建議先打電話或問學校確認。${c ? "" : "沒有選縣市，結果涵蓋全臺灣；選擇縣市會更精準。"}</p></div>`;
+  if (tm === "now") html += `<div class="alert"><b>現在就需要幫忙？</b>如果孩子正處於危險、受傷或沒有地方去，請先看<button type="button" class="linkbtn" id="toSos">急難救助</button>。北臺八縣市的 18 歲以下兒少，可以直接到超商說「需要領取幸福保衛站餐點」。</div>`;
+  const ALL = list;
+  for (const k of ["food", "cloth", "edu"]) {
+    const items = ALL.map((g, i) => [g, i]).filter(([g]) => g.e.r.cat === k);
+    if (!items.length) continue;
+    html += `<div class="group"><h4><span class="dot" style="background:${CAT[k].color}"></span>${CAT[k].label}・${items.length} 項</h4><div class="rlist">` +
+      items.slice(0, c ? 60 : 20).map(([g, i]) => cardFor(g, i, true)).join("") + `</div>` +
+      (!c && items.length > 20 ? `<p class="hint">另有 ${items.length - 20} 項，選擇縣市後即可看到。</p>` : "") + `</div>`;
+  }
+  if (!ALL.length) html += `<div class="empty">目前沒有完全符合的資源。可以減少勾選的條件，或改用「地圖探索」瀏覽當地所有資源。</div>`;
+  const box = $("#qres"); box.innerHTML = html; bindGo(box, ALL);
+  const ts = $("#toSos"); if (ts) ts.onclick = openSos;
+  box.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+});
+
+// ===================== 急難救助 =====================
+const HOT = [
+  ["110", "報警", "有人正在傷害你、被跟蹤、走失，或遇到立即危險"],
+  ["119", "消防與救護", "受傷、突然生病、火災或其他需要救護車的狀況"],
+  ["113", "保護專線", "被打、被罵、被摸、被威脅，或在家沒人照顧；24 小時服務，通報者身分會保密"]
+];
+$("#hot").innerHTML = HOT.map(([n, t, d]) => `<div class="num"><span class="n">${n}</span><b>${t}</b><span>${d}</span>
+  <div class="row"><a class="call" href="tel:${n}">撥打</a><button type="button" class="copy" data-n="${n}">複製號碼</button></div></div>`).join("");
+const SIT = [
+  ["肚子餓，沒有東西吃", "ol", [
+    "住在宜蘭、基隆、臺北、新北、桃園、新竹縣市、苗栗：到任何一家 7-ELEVEN、全家、萊爾富或 OK 超商，跟店員說「<b>需要領取幸福保衛站餐點</b>」。18 歲以下免費，約 100 元的主食與飲料，24 小時都可以。",
+    "住在臺中市：到設有「愛心守護站」的超商門市求助，可以兌換熱食。",
+    "其他縣市：上學日先找導師或學務處；放假期間問學校有沒有寒暑假餐券；也可以打 <span class=\"tel\">1957</span> 福利諮詢專線詢問。",
+    "如果常常吃不飽，請用<button type=\"button\" class=\"linkbtn\" data-go=\"quiz\">問答式探索</button>找餐券、午餐補助和實物銀行。"]],
+  ["被打、被罵、被摸，或在家沒人照顧", "ol", [
+    "正在發生、有立即危險：先離開到安全的地方，打 <span class=\"tel\">110</span>。",
+    "打 <span class=\"tel\">113</span> 保護專線，24 小時有人接聽，社工會評估並安排協助。",
+    "也可以告訴學校的導師、輔導老師或學務處，老師依法要協助通報。",
+    "北臺八縣市的超商是幸福保衛站，可以先進去跟店員說你需要幫忙。"]],
+  ["離家、迷路，或晚上沒有地方去", "ol", [
+    "到最近的超商、派出所等明亮有人的地方，打 <span class=\"tel\">110</span>。",
+    "打 <span class=\"tel\">113</span>，說明你在哪裡、需要什麼協助。",
+    "北臺八縣市的超商門市可以當臨時避難的地方，並提供餐點。"]],
+  ["家裡突然沒錢（家人失業、生病、過世）", "ol", [
+    "打 <span class=\"tel\">1957</span> 衛福部福利諮詢專線，詢問急難救助、生活補助要怎麼申請。",
+    "到戶籍所在地的鄉鎮市區公所社會課，或縣市政府的社福中心，申請急難救助。",
+    "告訴孩子的導師：學校可以協助減免午餐費、申請餐券與急難慰助。",
+    "聯絡當地的家扶中心（可在下方查詢電話）。"]],
+  ["心情很差、壓力很大，想找人說話", "ul", [
+    "<span class=\"tel\">1925</span> 安心專線：24 小時、免付費。",
+    "<span class=\"tel\">1995</span> 生命線、<span class=\"tel\">1980</span> 張老師：服務時間請自行查詢。",
+    "如果有傷害自己的念頭，請馬上打 1925，或告訴身邊信任的大人。"]]
+];
+$("#sit").innerHTML = SIT.map(([h, tag, items]) => `<div class="sitc"><h4>${h}</h4><${tag}>${items.map(x => `<li>${x}</li>`).join("")}</${tag}></div>`).join("");
+$("#sit").querySelectorAll('[data-go="quiz"]').forEach(b => b.onclick = () => { simpleCrumb($("#qcrumb"), "問答式探索"); setView("quiz"); });
+document.querySelectorAll(".copy").forEach(b => b.onclick = () => {
+  const n = b.dataset.n, done = () => { b.textContent = "已複製"; setTimeout(() => b.textContent = "複製號碼", 1500); };
+  try { navigator.clipboard.writeText(n).then(done, () => { b.textContent = n; }); } catch (e) { b.textContent = n; }
+});
+fillCounties($("#sc"));
+$("#sc").addEventListener("change", () => {
+  const c = $("#sc").value, box = $("#slocal");
+  if (!c) { box.innerHTML = ""; return; }
+  const items = [];
+  CCF.filter(x => x.cover[c]).forEach(x => {
+    const part = x.cover[c] === "*" ? "" : `（負責：${x.cover[c].split(" ").slice(0, 6).join("、")}${x.cover[c].split(" ").length > 6 ? "等" : ""}）`;
+    items.push(`<li><b>${esc(x.n)}</b>${esc(part)}：<span class="tel">${esc(x.t)}</span>，${esc(x.a)}</li>`);
+  });
+  resourcesFor(c, TOWNS[c][0]).filter(r => r.cat === "food" && (r.scope === "北臺八縣市" || r.scope === "全縣市")).forEach(r => {
+    items.push(`<li>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}：${esc(r.item)}（${esc(r.time || "請自行查詢")}）</li>`);
+  });
+  items.push(`<li><a href="${esc(GOV[c])}" target="_blank" rel="noopener">${esc(c)}政府網站</a>：可查社會局（處）、社福中心與急難救助申請方式。</li>`);
+  box.innerHTML = `<ul>${items.join("")}</ul>`;
+});
+
+// ===================== 查證日期與回報 =====================
+const STALE_DAYS = 180;
+function metaRow(checked, name, place) {
+  const d = new Date(checked + "T00:00:00+08:00");
+  const days = Math.floor((Date.now() - d) / 86400000);
+  const label = checked.replace(/-/g, "/");
+  return `<div class="meta"><span>最後查證：${label}</span>` +
+    (days > STALE_DAYS ? `<span class="stale">已超過半年未更新，資訊可能已過時，請先向單位確認</span>` : "") +
+    `<button type="button" class="rep" data-rep="${esc(name)}" data-place="${esc(place || "")}">回報資訊有誤</button></div>`;
+}
+let repCtx = null;
+function openReport(name, place) {
+  repCtx = { name, place };
+  $("#repWhat").textContent = `資源：${name}${place ? "（" + place + "）" : ""}`;
+  $("#repMsg").value = ""; $("#repOut").innerHTML = ""; $("#repSend").disabled = false; $("#repSend").hidden = false;
+  const dlg = $("#repDlg");
+  if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+}
+function closeReport() { const dlg = $("#repDlg"); if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
+$("#repCancel").onclick = closeReport;
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf7qdbk5sgIB1c3SIlxynhLP_B_OvJPl2ts-bfEv0Rp7M4fLQ/viewform";
+function copyBtn(btn, text) {
+  btn.onclick = () => {
+    const ok = () => { btn.textContent = "已複製"; setTimeout(() => btn.textContent = "複製", 1500); };
+    try { navigator.clipboard.writeText(text).then(ok, () => { btn.textContent = "請手動選取上方文字"; }); } catch (e) { btn.textContent = "請手動選取上方文字"; }
+  };
+}
+$("#repForm").addEventListener("submit", ev => {
+  ev.preventDefault();
+  if (!repCtx) return;
+  const kind = (document.querySelector('input[name="rk"]:checked') || {}).value || "其他";
+  const msg = $("#repMsg").value.trim();
+  const f1 = `${repCtx.name}${repCtx.place ? "（" + repCtx.place + "）" : ""}`;
+  const f2 = `【${kind}】${msg || "（未填寫說明）"}`;
+  const out = $("#repOut");
+  const url = FORM_URL + "?usp=pp_url&entry.1557420584=" + encodeURIComponent(f1) + "&entry.615909790=" + encodeURIComponent(f2);
+  out.innerHTML = `<p style="margin:0">已幫你填好回報內容，按下按鈕會開啟 Google 表單，確認後按「提交」即可。</p>
+    <b>發現問題的地點</b><div class="copybox" id="cb1"></div>
+    <b>需要更正的地方</b><div class="copybox" id="cb2"></div>
+    <a class="cta" id="formGo" href="${esc(url)}" target="_blank" rel="noopener" style="justify-self:start;text-decoration:none;padding:8px 20px;font-size:15px">開啟已填好的回報表單 ↗</a>
+    <span class="hint">如果表單沒有自動帶入內容，可以複製上面兩段文字貼上。</span>`;
+  out.style.display = "grid"; out.style.gap = "6px";
+  $("#cb1").textContent = f1; $("#cb2").textContent = f2;
+  $("#repSend").hidden = true;
+});
+document.addEventListener("click", ev => {
+  const r = ev.target.closest(".rep"); if (r) { openReport(r.dataset.rep, r.dataset.place); return; }
+  const o = ev.target.closest("[data-open='help']"); if (o) { openHelp(o.dataset.sec); return; }
+  const j = ev.target.closest("[data-jump]"); if (j) { const t = document.getElementById(j.dataset.jump); if (t) t.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }
+});
+
+// ===================== 我想幫忙 =====================
+const STATUS = {
+  always: ["st-always", "常態收受"], live: ["st-live", "需求即時更新"], season: ["st-season", "季節性"],
+  ask: ["st-ask", "請先聯絡確認"], recruit: ["st-season", "定期招募"], no: ["st-no", "部分品項不收"]
+};
+const HELP = {
+  goods: [
+    { name:"iGoods 愛物資", url:"https://www.igoods.tw/", st:"live",
+      what:"社福團體自己在平台上架需要的物資與數量，捐贈者照清單捐；消耗品（食品、衛生紙等）可直接在平台上購買後由平台寄給機構",
+      who:"任何人都可以捐；博幼基金會等單位都有在上面列出需求",
+      how:"在平台上選擇想支持的機構，依需求清單捐出或購買，平台會顯示還缺多少",
+      time:"隨時", phone:"", checked:"2026-10-20",
+      note:"這是最能避免「捐了用不到」的方式，因為數量由機構即時更新。" },
+    { name:"各縣市實（食）物銀行", url:"https://sab.tycg.gov.tw/cp.aspx?n=7366", st:"no",
+      what:"未拆封、效期內的食品與民生用品（米、罐頭、奶粉、尿布、清潔用品等）",
+      who:"個人、企業、宗教團體都可以捐；中元普渡後的物資也常轉贈到這裡",
+      how:"聯絡縣市社會局（處）、社福中心或區公所的實物銀行窗口，確認品項後送到指定據點。例如桃園市實物銀行目前不收衣物和家具",
+      time:"週一至週五上班時間（以各縣市為準）", phone:"", checked:"2026-10-20",
+      note:"連結為桃園市社會局實物銀行說明頁，其他縣市請到縣市政府網站搜尋「實物銀行」。" },
+    { name:"學校二手制服回收", url:"", st:"season",
+      what:"洗淨、無破損的制服、運動服、外套、書包，部分學校也收教科書",
+      who:"家長和畢業生；捐到孩子就讀或住家附近的國中小、高中",
+      how:"拆掉名牌、洗淨折好，送到學校學務處（衛生組）或家長會；學校整理後提供有需要的學生免費領用",
+      time:"多在學期末、畢業季（6 月）回收，開學時發放；各校時間不同", phone:"", checked:"2026-10-19",
+      note:"「衣」是這個網站資源最少的一類，二手制服是最直接幫上忙的方式。" },
+    { name:"家扶中心物資捐贈", url:"https://www.ccf.org.tw/", st:"ask",
+      what:"依各地家扶中心當期需求，常見為食品、文具、年節與寒冬送暖物資",
+      who:"任何人",
+      how:"先打電話給離你最近的家扶中心詢問目前需要什麼（全台 23 個中心的電話可在「急難救助」頁選縣市查詢）",
+      time:"年節前（寒冬送暖）需求最多", phone:"", checked:"2026-10-20" }
+  ],
+  money: [
+    { name:"先確認：公益勸募管理系統", url:"https://mohw.gov.tw/cp-16-73295-1.html", st:"always",
+      what:"查詢勸募活動是否經政府許可、許可期間、募款用途與過去的成果報告",
+      who:"所有想捐款的人",
+      how:"捐款前查詢活動名稱或許可字號；收據上應載明勸募許可文號與勸募專戶，可用於報稅列舉扣除；遇到可疑募款打 165",
+      time:"隨時", phone:"", checked:"2026-10-20" },
+    { name:"1919 救助套餐（7-ELEVEN 認捐）", url:"https://udn.com/news/story/7266/9613131", st:"season",
+      what:"每套 360 元，讓 1919 食物銀行採購食物包，送給全台約 5,200 戶弱勢家庭",
+      who:"任何人",
+      how:"到全台 7-ELEVEN 門市的 ibon 機台，或使用 7-ELEVEN i 預購認捐",
+      time:"2026 年夏季起的年度勸募活動，截止時間請自行查詢", phone:"", checked:"2026-10-20" },
+    { name:"家扶基金會 捐款與兒童認養", url:"https://www.ccf.org.tw/", st:"always",
+      what:"支持弱勢家庭兒少的經濟扶助、社工服務與獎助學金",
+      who:"任何人", how:"在家扶官網選擇單筆捐款或定期認養", time:"隨時", phone:"", checked:"2026-10-20" },
+    { name:"博幼基金會 捐款", url:"https://www.boyo.org.tw/", st:"always",
+      what:"支持偏鄉弱勢學童的免費課業輔導與社工服務",
+      who:"任何人", how:"在博幼官網的捐款頁面捐款", time:"隨時", phone:"049-291-5055", checked:"2026-10-20" }
+  ],
+  vol: [
+    { name:"博幼基金會 線上課輔老師", url:"https://www.boyo.org.tw/", st:"recruit",
+      what:"用 Google Meet 線上教偏鄉國中小學生英文、數學、閱讀，1 位老師帶 3 位學生，教材由博幼提供",
+      who:"在學大學生，不限科系與年級；需通過筆試、面談，並完成 18 小時學習扶助師資培訓",
+      how:"每學期公開招募，線上表單報名。115 學年度第一學期已於 8 月 9 日截止，第二學期（3–6 月）請留意官網",
+      time:"每週 5 天、每天 2 節（每節 50 分鐘）", phone:"", checked:"2026-10-20",
+      note:"這是有鐘點費的兼職（國小每節 226 元起），不是無給志工，但同樣是直接陪伴孩子學習的方式。" },
+    { name:"永齡希望小學 課輔老師", url:"", st:"recruit",
+      what:"在合作國小放學後，以小班（約 7–8 人）幫經濟弱勢、學習落後的國小 2–6 年級學生補強國語、數學、英文",
+      who:"多數分校要求大二以上在學生或社會人士；需完成永齡課輔教師研習",
+      how:"由各大學分校招募（如中央、中興、雲科大、成大、中山、屏東大學等），請搜尋「永齡希望小學 ＋ 你的學校或縣市」找到分校粉絲專頁或公告",
+      time:"學期中平日放學後，每週至少 2 天（以雲科大分校為例）", phone:"", checked:"2026-10-20",
+      note:"多有鐘點費與交通補助，各分校不同。" },
+    { name:"家扶中心 志工（展愛隊等）", url:"https://www.ccf.org.tw/", st:"ask",
+      what:"協助兒少營隊、寒暑假冬夏令營、兒童節園遊會、年節義賣與各項活動",
+      who:"依各中心規定，部分中心有高中生、大學生組成的志工隊",
+      how:"聯絡居住地的家扶中心詢問志工招募與培訓時間",
+      time:"活動多集中在寒暑假、春節、母親節、兒童節前後", phone:"", checked:"2026-10-20" },
+    { name:"1919 陪讀班 志工", url:"https://www.ccra.org.tw/", st:"ask",
+      what:"在各地教會開辦的 1919 陪讀班，陪弱勢家庭孩子寫功課，部分班級提供晚餐",
+      who:"依各陪讀班規定", how:"聯絡中華基督教救助協會，或住家附近的 1919 服務中心（教會）詢問",
+      time:"多為平日放學後", phone:"", checked:"2026-10-20" },
+    { name:"實物銀行 志工", url:"", st:"ask",
+      what:"整理、分類捐贈物資，協助發放或配送給弱勢家庭",
+      who:"依各縣市規定", how:"聯絡縣市社會局（處）或區公所社會課詢問志工招募",
+      time:"年節前、中元普渡後物資量最多", phone:"", checked:"2026-10-20" }
+  ]
+};
+const YEAR = [
+  [1, "1–2 月", "寒冬送暖、年節物資、年菜；服飾品牌與家扶合作讓孩子選新衣"],
+  [2, "寒假", "學校沒有營養午餐，假期餐食需求增加"],
+  [6, "6 月畢業季", "學校回收畢業生的二手制服、書包"],
+  [7, "7–8 月", "暑假餐食；開學前需要文具、書包、制服"],
+  [9, "9 月", "中元普渡後，宮廟與企業把普渡物資轉贈實物銀行，需要整理與發放的人手"],
+  [11, "11–12 月", "天氣轉冷，保暖衣物、棉被需求增加；寒冬送暖活動開始募集"],
+  [0, "全年", "食物包、實物銀行的食品與民生用品；課輔班的課業陪伴"]
+];
+function hcard(h) {
+  const [cls, lab] = STATUS[h.st];
+  const title = h.url ? `<a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.name)}</a><span class="ext" aria-hidden="true">↗</span>` : esc(h.name);
+  return `<article class="hcard"><div class="card-top"><h5>${title}</h5><span class="st ${cls}">${lab}</span></div><ul>
+    <li><b>可以捐／做什麼：</b>${esc(h.what)}</li><li><b>誰可以參與：</b>${esc(h.who)}</li>
+    <li><b>怎麼進行：</b>${esc(h.how)}</li><li><b>時間：</b>${esc(h.time || "請自行查詢")}</li>
+    ${h.phone ? `<li><b>電話：</b><span class="tel">${esc(h.phone)}</span></li>` : ""}</ul>
+    ${h.note ? `<div class="src">${esc(h.note)}</div>` : ""}
+    <div class="hact">${h.url ? `<a class="go" href="${esc(h.url)}" target="_blank" rel="noopener">查看最新需求與說明 ↗</a>` : `<span class="src">沒有統一網站，請依「怎麼進行」聯絡</span>`}</div>
+    ${metaRow(h.checked, h.name, "")}</article>`;
+}
+function renderHelp() {
+  $("#statusLegend").innerHTML = "狀態說明：" + Object.values(STATUS).filter((v, i, a) => a.findIndex(x => x[1] === v[1]) === i).map(([c, l]) => `<span class="st ${c}">${l}</span>`).join("");
+  $("#hl-goods").innerHTML = HELP.goods.map(hcard).join("");
+  $("#hl-money").innerHTML = HELP.money.map(hcard).join("");
+  $("#hl-vol").innerHTML = HELP.vol.map(hcard).join("");
+  const m = new Date().getMonth() + 1;
+  const nowIdx = YEAR.findIndex(([k]) => (k === 1 && m <= 2) || (k === 6 && m === 6) || (k === 7 && (m === 7 || m === 8)) || (k === 9 && m === 9) || (k === 11 && (m >= 10)));
+  $("#yearline").innerHTML = YEAR.map(([k, t, d], i) => `<li class="${i === nowIdx ? "now" : ""}"><span class="m">${t}${i === nowIdx ? '<span class="now-tag">即將到來</span>' : ""}</span><span>${esc(d)}</span></li>`).join("");
+}
+renderHelp();
+function openHelp(sec) {
+  simpleCrumb($("#hcrumb"), "我想幫忙"); setView("help");
+  if (sec) { const t = document.getElementById(sec); if (t) setTimeout(() => t.scrollIntoView(), 30); }
+}
+
+function openSos() { simpleCrumb($("#scrumb"), "急難救助"); setView("sos"); }
+$("#goSos").addEventListener("click", openSos);
+</script>
+
+<script src="./agent.js"></script>
+<script src="./review.js"></script>
+</body>
+</html>
